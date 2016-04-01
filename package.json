@@ -18,7 +18,14 @@
   },
   "homepage": "https://github.com/re1nv3nt/EmbraceYourself#readme",
   "dependencies": {
+    "angular-material": "^1.0.6",
     "body-parser": "^1.15.0",
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "jsonwebtoken": "^5.7.0",
+    "jwt-simple": "^0.5.0",
+    "morgan": "^1.7.0",
+    "passport-http-token": "0.0.1",
+    "q": "^1.4.1",
+    "pg": "^4.5.2"
   }
 }
