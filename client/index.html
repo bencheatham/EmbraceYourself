@@ -3,18 +3,22 @@
   <head>
     <meta charset="utf-8" />
     <title>Ridehook</title>
-    <link rel="stylesheet" type="text/css" href="styles/style.css" />
+    <link rel="stylesheet" type="text/css" href="styles/styles.css" />
+    
   </head>
-  <body>
-    <div id="div-main" ng-controller="main">
+  <body ng-controller="main">
+    <div id="div-main" >
       <h3>Ridehook: hook a ride!</h3>
+
     </div>
     
     <!-- the ng-view directive is where our templates will be loaded into when navigated to -->
     <div ng-view></div>
-
-    <script src="../bower_components/angular/angular.js"></script>
-    <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="/scripts/angular/angular.js"></script>
+    <script src="/scripts/angular-route/angular-route.js"></script>
+    <!--<script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-route/angular-route.js"></script>-->
+    <script src="app/messages/messages.js"></script>
     <script src="app/app.js"></script>
   </body>
 </html>
