@@ -49,7 +49,7 @@ angular.module('ridehook', [
   };
 });
 
-function DialogController($scope, $mdDialog) {
+function DialogController($scope, $mdDialog, $http) {
   $scope.hide = function() {
     $mdDialog.hide();
   };
@@ -58,9 +58,26 @@ function DialogController($scope, $mdDialog) {
     $mdDialog.cancel();
   };
 
-  $scope.answer = function(information) {
-    $mdDialog.hide(information);
+  $scope.postUser = function(information) {
+    console.log(information);
+   // $http.post('/data', information, config).then(successCallback, errorCallback);
+    return $http({
+      method: 'POST',
+      url: '/data',
+      data: information
+    }).then(function (response){
+      console.log('success', response.data)
+          $mdDialog.hide(information);
+    })
+
   };
+
+   // $scope.getUser = function(information){
+   //  console.log(information);
+   //  return 
+
+   };
+
 }
 
 
