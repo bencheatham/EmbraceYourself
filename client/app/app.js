@@ -38,7 +38,7 @@ angular.module('ridehook', [
 // })
 .controller('AppCtrl', function($scope, $mdDialog ) {
 
-  $scope.showTabDialog = function(ev) {
+  $scope.showSignUp = function(ev) {
     $mdDialog.show({
       controller: DialogController,
       templateUrl: 'tabDialog.tmpl.html',
@@ -47,7 +47,15 @@ angular.module('ridehook', [
       clickOutsideToClose:true
     })
   };
-});
+  $scope.showSignIn = function(ev) {
+    $mdDialog.show({
+      controller: DialogController,
+      templateUrl: 'tabDialog1.tmpl.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true
+    })
+  };
 
 function DialogController($scope, $mdDialog, $http) {
   $scope.hide = function() {
@@ -72,12 +80,29 @@ function DialogController($scope, $mdDialog, $http) {
 
   };
 
-   // $scope.getUser = function(information){
-   //  console.log(information);
-   //  return 
+   $scope.getUser = function(information){
 
+    return $http({
+      method: 'GET',
+      url: '/data',
+      data: information
+    }).then(function(err, response){
+      if (err){
+        console.log('cat')
+      } else{
+      console.log('success', response.data)
+        console.log(response)
+        $mdDialog.hide(information);
+      }
+    })
    };
-
 }
+
+
+
+
+
+});
+
 
 
