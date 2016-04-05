@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var pg = require('pg');
 var connectionString = 'postgres://localhost:5432/test';
 
+
 // database users
 var userTableSure = require('./server/models/users/userModel.js').userTableSure;
 var userController = require('./server/models/users/userController.js');
