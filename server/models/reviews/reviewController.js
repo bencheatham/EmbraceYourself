@@ -1,12 +1,12 @@
 var Review = require('./reviewModel.js');
 
-var helper = require('./helper.js');
+var helper = require('../client/helper.js');
 
 module.exports = {
 
   addReview: function(req, res, next) {
 
-    var client = new pg.Client(connectionString);
+    var client = helper.createClient();
 
     client.connect(function(err) {
       if(err) {
