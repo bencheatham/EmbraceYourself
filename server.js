@@ -22,24 +22,34 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 app.use(express.static(__dirname + '/client'));
 //app.use('/scripts', express.static(__dirname + '/bower_components'));
 
-app.get('/', function(req, res){
-  res.send("Rideshare server up and running!");
-});
+// app.get('/', function(req, res){
+//   res.send("Rideshare server up and running!");
+// });
 
-app.get('/data', function (req, res) {
+// not needed
+app.get('/data/users', function (req, res) {
   console.log("Get Received!");
   var client = new pg.Client(connectionString);
   userController.getUsers(req, res, client);
 });
 
-app.post('/data', function (req, res) {
+app.post('/data/users', function (req, res) {
   console.log("Post received!");
-  console.log(req.body);
   if (req.body) {
   	console.log(req.body);
     var client = new pg.Client(connectionString);
     userController.newUser(req.body.firstname, req.body.lastname, req, res, client);
   }
+});
+
+app.post('/data/trips', function (req, res) {
+  console.log("Post received!");
+  console.log(reg.body);
+  // if (req.body) {
+  // 	console.log(req.body);
+  //   var client = new pg.Client(connectionString);
+  //   userController.newUser(req.body.firstname, req.body.lastname, req, res, client);
+  // }
 });
 
 app.listen(port, function() {
