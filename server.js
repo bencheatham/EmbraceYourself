@@ -11,11 +11,12 @@ var userTableSure = require('./server/models/users/userModel.js').userTableSure;
 var userController = require('./server/models/users/userController.js');
 // database trips
 var tripTableSure = require('./server/models/trips/tripModel.js').tripTableSure;
+var tripController = require('./server/models/trips/tripController.js');
 
 var app = express();
 var port = process.env.PORT || 8000;
 
-app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 }));
@@ -26,30 +27,35 @@ app.use(express.static(__dirname + '/client'));
 //   res.send("Rideshare server up and running!");
 // });
 
-// not needed
+// NOT needed, kept for testing purposes
 app.get('/data/users', function (req, res) {
   console.log("Get Received!");
   var client = new pg.Client(connectionString);
   userController.getUsers(req, res, client);
 });
 
-app.post('/data/users', function (req, res) {
+app.post('/data/users/signup', function (req, res) {
   console.log("Post received!");
   if (req.body) {
-  	console.log(req.body);
     var client = new pg.Client(connectionString);
-    userController.newUser(req.body.firstname, req.body.lastname, req, res, client);
+    userController.newUser(req.body, req, res, client);
   }
 });
 
-app.post('/data/trips', function (req, res) {
+app.post('/data/users/login', function (req, res) {
   console.log("Post received!");
-  console.log(reg.body);
-  // if (req.body) {
-  // 	console.log(req.body);
-  //   var client = new pg.Client(connectionString);
-  //   userController.newUser(req.body.firstname, req.body.lastname, req, res, client);
-  // }
+  if (req.body) {
+    var client = new pg.Client(connectionString);
+    userController.loginUser(req.body, req, res, client);
+  }
+});
+
+app.post('/data/trips/newtrip', function (req, res) {
+  console.log("Post received!");
+  if (req.body) {
+    var client = new pg.Client(connectionString);
+    tripController.newTrip(req.body, req, res, client);
+  }
 });
 
 app.listen(port, function() {
