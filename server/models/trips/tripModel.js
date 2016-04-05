@@ -14,7 +14,8 @@ var tripTableSure = function () {
     if(err) {
       return console.error('could not connect to postgres', err);
     }
-    var query1 = client.query('CREATE TABLE IF NOT EXISTS trips(id SERIAL PRIMARY KEY, event VARCHAR(255))');
+    // date and time are still VARCHAR as well as separate... for now
+    var query1 = client.query('CREATE TABLE IF NOT EXISTS trips(id SERIAL PRIMARY KEY, description VARCHAR(255), pickup_point VARCHAR(255), dropoff_point VARCHAR(255), depart_date VARCHAR(255), depart_time VARCHAR(255), arrival_date VARCHAR(255), arrival_time VARCHAR(255), seats INTEGER, user_id INTEGER REFERENCES users (id))');
 
     query1.on('end', function() { client.end(); });
   });
