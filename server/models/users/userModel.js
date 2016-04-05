@@ -14,7 +14,7 @@ var userTableSure = function () {
     if(err) {
       return console.error('could not connect to postgres', err);
     }
-    var query1 = client.query('CREATE TABLE IF NOT EXISTS users(id SERIAL PRIMARY KEY, firstname VARCHAR(255), lastname VARCHAR(255))');
+    var query1 = client.query('CREATE TABLE IF NOT EXISTS users(id SERIAL PRIMARY KEY, first_name VARCHAR(255), last_name VARCHAR(255), age INTEGER, profile_pic VARCHAR(255), password VARCHAR(255), city VARCHAR(255), state VARCHAR(255), zip_code INTEGER, user_id INTEGER REFERENCES users (id))');
 
     query1.on('end', function() { client.end(); });
   });
