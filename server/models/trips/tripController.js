@@ -42,9 +42,9 @@ function vewTrip(data, req, res) {
       }
     });
 
-  }); // end client.connect
+  });
 }
-}
+
 
 module.exports = {
   newTrip: newTrip,
