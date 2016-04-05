@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+ 
 // database dependencies
 var pg = require('pg');
 var connectionString = 'postgres://localhost:5432/test';
@@ -63,3 +64,8 @@ app.listen(port, function() {
   userTableSure();
   tripTableSure();
 });
+
+
+require('./server/config/middleware.js')(app, express);
+
+
