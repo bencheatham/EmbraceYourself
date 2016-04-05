@@ -4,6 +4,8 @@ var bodyParser = require('body-parser');
 var pg = require('pg');
 var connectionString = 'postgres://localhost:5432/test';
 
+
+
 // database users
 var userTableSure = require('./server/models/users/userModel.js').userTableSure;
 var userController = require('./server/models/users/userController.js');
@@ -28,12 +30,13 @@ app.get('/data', function (req, res) {
   console.log("Get Received!");
   var client = new pg.Client(connectionString);
   userController.getUsers(req, res, client);
-
 });
 
 app.post('/data', function (req, res) {
   console.log("Post received!");
+  console.log(req.body);
   if (req.body) {
+  	console.log(req.body);
     var client = new pg.Client(connectionString);
     userController.newUser(req.body.firstname, req.body.lastname, req, res, client);
   }
