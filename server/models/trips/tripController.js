@@ -1,3 +1,6 @@
+var helper = require('./helper.js');
+
+
 function newTrip(data, req, res, client) {
 
   client.connect(function(err) {
@@ -14,8 +17,36 @@ function newTrip(data, req, res, client) {
     });
 
   }); // end client.connect
+
+}
+
+
+function vewTrip(data, req, res) {
+
+  var client = helper.createClient();
+
+  client.connect(function(err) {
+    if(err) {
+      console.error('post failed!');
+      return res.status(500).json({ success: false, data: err});
+    }
+
+    client.query("SELECT * FROM trips WHERE tripID = $1", [data.tripID], function(err, result) {
+      if(err) throw err;
+      if (!result) {
+        client.end();
+        res.status(202).send("Trip could not be found");
+      } else {
+        client.end();
+        return res.status(201).send(result);
+      }
+    });
+
+  }); // end client.connect
+}
 }
 
 module.exports = {
-  newTrip: newTrip
+  newTrip: newTrip,
+  viewTrip: viewTrip
 };
