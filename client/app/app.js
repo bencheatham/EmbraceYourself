@@ -23,6 +23,11 @@ angular.module('ridehook', [
      controller: 'TripsController',
      authenticate: true
     })
+    .when('/viewtrip', {  
+     templateUrl: 'app/trips/viewtrip.html',
+     controller: 'ViewTripController',
+     authenticate: true
+    })
     .when('/messages', {
      templateUrl: 'app/messages/messages.html',
      controller: 'MessagesController',
