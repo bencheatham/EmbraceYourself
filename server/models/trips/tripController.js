@@ -1,4 +1,4 @@
-var helper = require('./helper.js');
+var helper = require('../client/helper.js');
 
 
 function newTrip(data, req, res, client) {

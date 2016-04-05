@@ -1,10 +1,10 @@
 var pg = require('pg');
+var helper = require('../config/helpers.js')
 // var conString = "postgres://username:password@localhost/database";
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/bencheatham';
 
 var tripTableSure = function () {
 
-  var client = new pg.Client(connectionString);
+  var client = helper.createClient();
 
   client.connect(function(err) {
     if(err) {
