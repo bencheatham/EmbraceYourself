@@ -1,6 +1,6 @@
 // Sets up main angular module and dependency injections
 angular.module('ridehook', [
-  //'ridehook.trips',
+  'ridehook.trips',
   'ridehook.messages',
   //'ridehook.auth',
   'ngRoute', 
@@ -23,14 +23,19 @@ angular.module('ridehook', [
      controller: 'TripsController',
      authenticate: true
     })
+    .when('/viewtrip', {  
+     templateUrl: 'app/trips/viewtrip.html',
+     controller: 'ViewTripController',
+     authenticate: true
+    })
     .when('/messages', {
      templateUrl: 'app/messages/messages.html',
      controller: 'MessagesController',
      authenticate: true
     })
-    // .otherwise({
-    //  redirectTo: '/'
-    // });
+    .otherwise({
+     redirectTo: '/'
+    });
 
  })
 // .run(function ($rootScope, $location) {

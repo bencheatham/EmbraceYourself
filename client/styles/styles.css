@@ -1,4 +1,5 @@
 body {
+<<<<<<< 7a98fa8187c682b62c62d6ccf20706f6789c4338
     width: 100%;
 }
 
@@ -33,4 +34,34 @@ body {
 
 #container {
     text-align: center;
+=======
+	width: 100%;
+}
+
+#div-main {
+	width: 100%;
+	margin: auto;
+}
+
+#div-main h3 {
+	text-align: center;
+}
+
+.div-title {
+	text-align: center;
+	padding-top: 100px;
+	padding-bottom: 20px;
+}
+
+#container {
+	text-align: center;
+}
+
+/* Trip View Styles */
+
+/*form style here*/
+
+#input-pickup-location {
+	width: 150px;
+>>>>>>> merging with upstream master
 }
