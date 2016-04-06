@@ -60,6 +60,6 @@ app.post('/data/trips/newtrip', function (req, res) {
 
 app.listen(port, function() {
   console.log('App up and running on http://localhost: ', port);
-  userTableSure();
-  tripTableSure();
+  userTableSure(connectionString);
+  tripTableSure(connectionString);
 });

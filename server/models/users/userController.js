@@ -20,8 +20,20 @@ function getUsers(req, res, client) {
   }); // end client.connect
 }
 
-// signup
+// signup CHANGE OBJECTKEYS
 function newUser(data, req, res, client) {
+
+  var dataInputs = [
+    data.username,
+    data.password,
+    data.first_name,
+    data.last_name,
+    data.age,
+    data.profile_pic,
+    data.city,
+    data.state,
+    data.zip_code
+  ];
 
   client.connect(function(err) {
     if(err) {
@@ -35,7 +47,7 @@ function newUser(data, req, res, client) {
         client.end();
         return res.status(202).send("User already exists!");
       } else {
-        var query = client.query("INSERT INTO users(username, password, first_name, last_name, age, profile_pic, city, state, zip_code) values ($1, $2, $3, $4, $5, $6, $7, $8, $9)", Object.keys(data));
+        var query = client.query("INSERT INTO users(username, password, first_name, last_name, age, profile_pic, city, state, zip_code) values ($1, $2, $3, $4, $5, $6, $7, $8, $9)", dataInputs);
 
         query.on('end', function() {
           client.end();
