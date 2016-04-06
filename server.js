@@ -71,3 +71,6 @@ app.listen(port, function() {
   userTableSure(connectionString);
   tripTableSure(connectionString);
 });
+
+//  Ben's line
+require('./server/config/middleware.js')(app, express);
