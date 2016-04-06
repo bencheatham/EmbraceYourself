@@ -8,6 +8,9 @@ module.exports = {
 
     var client = helper.createClient();
 
+
+    console.log(req.body);
+
     client.connect(function(err) {
       if(err) {
         console.error('Post failed!');
@@ -21,7 +24,7 @@ module.exports = {
        review, \
        created_on, \
        modified_on, \
-       values ($1, $2, $3, $4, $5, $6)", Object.keys(data));
+       values ($1, $2, $3, $4, $5, $6)", Object.keys(req.body));
 
       query.on('end', function() {
         client.end();
