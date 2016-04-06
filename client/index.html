@@ -21,14 +21,14 @@
             <md-tabs md-dynamic-height md-border-bottom>
               <md-tab label="Sign Up">
                 <md-content class="md-padding">
-                  <input type="text" ng-model="firstname" >First Name</input>
-                  <input type="text" ng-model="lastname" >Last Name</input>
+                  <input type="text" placeholder="username" ng-model="username" >Username</input>
+                  <input type="text" placeholder="password" ng-model="password" >Password</input>
                 </md-content>
               </md-tab>
             </md-tabs>
           <md-dialog-actions layout="row"> 
             <md-button ng-click="hide()">Cancel</md-button>
-            <md-button ng-click="postUser({'firstname': firstname, 'lastname': lastname})" style="margin-right:20px;" >
+            <md-button ng-click="newUser({'username': username, 'password': password})" style="margin-right:20px;" >
               Sign Up
             </md-button>
           </md-dialog-actions>
@@ -48,14 +48,14 @@
             <md-tabs md-dynamic-height md-border-bottom>
               <md-tab label="Sign In">
                 <md-content class="md-padding">
-                  <input type="text" ng-model="firstname" >First Name</input>
-                  <input type="text" ng-model="lastname" >Last Name</input>
+                  <input type="text" placeholder="username" ng-model="username" >Username</input>
+                  <input type="text" placeholder="password" ng-model="password" >Password</input>
                 </md-content>
               </md-tab>
             </md-tabs>
           <md-dialog-actions layout="row"> 
             <md-button ng-click="hide()">Cancel</md-button>
-            <md-button ng-click="getUser({'firstname': firstname, 'lastname': lastname})" style="margin-right:20px;" >
+            <md-button ng-click="loginUser({'username': username, 'password': password})" style="margin-right:20px;" >
               Sign In
             </md-button>
           </md-dialog-actions>

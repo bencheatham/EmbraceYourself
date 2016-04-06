@@ -47,7 +47,7 @@ angular.module('ridehook', [
 // .run(function ($rootScope, $location) {
 
 // })
-.controller('AppCtrl', function($scope, $mdDialog ) {
+.controller('AppCtrl', function ($scope, $mdDialog ) {
 
   $scope.showSignUp = function(ev) {
     $mdDialog.show({
@@ -58,6 +58,7 @@ angular.module('ridehook', [
       clickOutsideToClose:true
     })
   };
+
   $scope.showSignIn = function(ev) {
     $mdDialog.show({
       controller: DialogController,
@@ -68,50 +69,71 @@ angular.module('ridehook', [
     })
   };
 
-function DialogController($scope, $mdDialog, $http) {
-  $scope.hide = function() {
-    $mdDialog.hide();
-  };
+  function DialogController($scope, $mdDialog, $http) {
 
-  $scope.cancel = function() {
-    $mdDialog.cancel();
-  };
+    $scope.hide = function() {
+      $mdDialog.hide();
+    };
 
-  $scope.postUser = function(information) {
-    console.log(information);
-   // $http.post('/data', information, config).then(successCallback, errorCallback);
-    return $http({
-      method: 'POST',
-      url: '/data',
-      data: information
-    }).then(function (response){
-      console.log('success', response.data)
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+
+    $scope.newUser = function(information) {
+
+      information = {
+        username: information.username,
+        password: information.password,
+        first_name: 'Geralt',
+        last_name: 'Of Rivia',
+        age: 27,
+        profile_pic: null,
+        city: 'San Francisco',
+        state: 'California',
+        zip_code: 94103
+      };
+
+      console.log('info obj to POST to server: ', information);
+     // $http.post('/data', information, config).then(successCallback, errorCallback);
+      return $http({
+        method: 'POST',
+        url: '/data/users/signup',
+        data: information
+      }).then(function (response){
+        console.log(response.data);
+            $mdDialog.hide(information);
+      });
+    };
+
+    $scope.loginUser = function(information){
+
+      information = {
+        username: information.username,
+        password: information.password,
+        first_name: 'Geralt',
+        last_name: 'Of Rivia',
+        age: 27,
+        profile_pic: null,
+        city: 'San Francisco',
+        state: 'California',
+        zip_code: 94103
+      };
+
+      return $http({
+        method: 'POST',
+        url: '/data/users/login',
+        data: information
+      }).then(function (response){
+        // if (err){
+        //   console.log('cat: ', err)
+        // } else {
+          console.log(response.data);
+          // console.log(response)
           $mdDialog.hide(information);
-    })
-
-  };
-
-   $scope.getUser = function(information){
-
-    return $http({
-      method: 'GET',
-      url: '/data',
-      data: information
-    }).then(function(err, response){
-      if (err){
-        console.log('cat')
-      } else{
-      console.log('success', response.data)
-        console.log(response)
-        $mdDialog.hide(information);
-      }
-    })
-   };
-}
-
-
-
-
+        // }
+      });
+    };
+  }
 
 });
 
