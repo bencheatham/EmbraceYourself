@@ -127,7 +127,7 @@ angular.module('ridehook', [
         // if (err){
         //   console.log('cat: ', err)
         // } else {
-          console.log('success', response.data);
+          console.log(response.data);
           // console.log(response)
           $mdDialog.hide(information);
         // }
