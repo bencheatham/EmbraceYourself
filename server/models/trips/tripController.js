@@ -28,6 +28,39 @@ function newTrip(data, req, res, client) {
   }); // end client.connect
 }
 
+function findTrip(data, req, res, client) {
+
+  var results = [];
+
+  var dataInputs = [
+    data.pickup_point,
+    data.dropoff_point,
+    data.depart_date, // "04/08/2016" string
+  ];
+
+  client.connect(function(err) {
+    if(err) {
+      console.error('Post failed!');
+      return res.status(500).json({ success: false, data: err});
+    }
+
+    var query = client.query("SELECT FROM trips(pickup_point, dropoff_point, depart_date) values ($1, $2, $3)", dataInputs);
+
+    query.on('row', function(row) {
+      results.push(row);
+    });
+
+    query.on('end', function() {
+      client.end();
+      return res.status(202).sends({
+        results: results
+      });
+    });
+
+  }); // end client.connect
+}
+
 module.exports = {
-  newTrip: newTrip
+  newTrip: newTrip,
+  findTrip: findTrip
 };

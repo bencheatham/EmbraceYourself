@@ -58,6 +58,14 @@ app.post('/data/trips/newtrip', function (req, res) {
   }
 });
 
+app.post('/data/trips/findtrip', function (req, res) {
+  console.log("Post received!");
+  if (req.body) {
+    var client = new pg.Client(connectionString);
+    tripController.findTrip(req.body, req, res, client);
+  }
+});
+
 app.listen(port, function() {
   console.log('App up and running on http://localhost: ', port);
   userTableSure(connectionString);
