@@ -10,17 +10,37 @@ angular.module('ridehook.trips', [])
 
 	$scope.createTrip = function () {
 
+		//$cookies.put('user_id', '1337');
+
+		var date = new Date($scope.trip.startDate);
+        var day = date.getDate();
+        var monthIndex = date.getMonth() + 1;
+        var year = date.getFullYear();
+        var newDepartDate = "" + monthIndex + "/" + day + "/" + year;
+        $scope.trip.startDate = newDepartDate;
+        console.log($scope.trip.startDate);
+
+        date = new Date($scope.trip.endDate);
+        day = date.getDate();
+        monthIndex = date.getMonth() + 1;
+        year = date.getFullYear();
+        var newArriveDate = "" + monthIndex + "/" + day + "/" + year;
+        $scope.trip.endDate = newArriveDate;
+        console.log($scope.trip.endDate);
+
 		var tripObj = {
 			description: $scope.trip.description,
 			pickup_point: $scope.trip.pickup,
 			dropoff_point: $scope.trip.dropoff,
-			depart_date: Date.parse($scope.trip.startDate),
+			depart_date: $scope.trip.startDate,//Date.parse($scope.trip.startDate),
 			depart_time: $scope.trip.departHour + ':' + $scope.trip.departMinute + $scope.trip.departTimeperiod,
-			arrive_date: Date.parse($scope.trip.endDate),
-			arrive_time: $scope.trip.arriveHour + ':' + $scope.trip.arriveMinute + $scope.trip.arriveTimeperiod,
+			arrival_date: $scope.trip.endDate,//Date.parse($scope.trip.endDate),
+			arrival_time: $scope.trip.arriveHour + ':' + $scope.trip.arriveMinute + $scope.trip.arriveTimeperiod,
 			seats: Number($scope.trip.seats),
-			user_id: 1
+			user_id: 1 // will reconfig this when we can get current user id from session
 		};
+
+		// new trip dummy data
 
 		// var tripObj = {
 		// 	description: 'Yosemite camping trip!',
@@ -34,25 +54,8 @@ angular.module('ridehook.trips', [])
 		// 	user_id: 1
 		// };
 
-		console.log('seats', Number($scope.trip.seats), 'type: ', typeof Number($scope.trip.seats));
-
-		// console.log('pickup location is: ', $scope.trip);
-		// //Date.UTC(year, month[, day[, hour[, minute[, second[, millisecond]]]]])
-		// console.log('startTime type: ', typeof $scope.trip.startDate);
-
-		// console.log("startDate: ", $scope.trip.startDate);
-		// console.log("startDate.toString(): '" + $scope.trip.startDate.toString().slice(0, 15) + "'");
-		// //14char  
-		// //Date.UTC(), .toUTCString()
-		// console.log('Date.parse(startDate): ', Date.parse($scope.trip.startDate));
-		// console.log('Date.parse(startDate).toString(): ', Date.parse($scope.trip.startDate.toString()));
-		// console.log('pickup location is: ', $scope.trip.pickup);
-		// console.log('depart time: ', $scope.trip.departHour + ':' + $scope.trip.departMinute + $scope.trip.departTimeperiod);
-		// console.log('arrive time: ', $scope.trip.arriveHour + ':' + $scope.trip.arriveMinute + $scope.trip.arriveTimeperiod);
-
-		console.log('tripObj to send to server: ', tripObj);
-
-		//INSERT INTO trips(description, pickup_point, dropoff_point, depart_date, depart_time, arrival_date, arrival_time, seats, user_id)
+		// console.log('seats', Number($scope.trip.seats), 'type: ', typeof Number($scope.trip.seats));
+		// console.log('tripObj to send to server: ', tripObj);
 
 		return $http({
 			method: 'POST',
