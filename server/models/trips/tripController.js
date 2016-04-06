@@ -54,8 +54,7 @@ function vewTrip(data, req, res) {
       }
     });
 
-  }); // end client.connect
-}
+  });
 }
 
 function findTrip(data, req, res, client) {

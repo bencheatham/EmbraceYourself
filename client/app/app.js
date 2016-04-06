@@ -29,6 +29,16 @@ angular.module('ridehook', [
      controller: 'ViewTripController',
      authenticate: true
     })
+    .when('/addreview', {
+      templateUrl: 'app/reviews/addreview.html',
+      controller: 'ReviewController',
+      authenticate: true
+    })
+    .when('/userreviews', {
+      templateUrl: 'app/reviews/userreviews.html',
+      controller: 'ReviewController',
+      authenticate: true
+    })
     .when('/messages', {
      templateUrl: 'app/messages/messages.html',
      controller: 'MessagesController',

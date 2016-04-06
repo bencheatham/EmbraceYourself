@@ -33,6 +33,29 @@ module.exports = {
 
   getReviews: function(req, res, next) {
 
+    var client = helper.createClient();
+
+    client.connect(function(err) {
+     if(err) {
+       console.error('Did not query');
+       return res.status(500).json({success: false, data: err});
+     }
+
+     var query = client.query("SELECT * FROM reviews WHERE reviewed_userID = $1", 
+       [data.reviewed_userID],
+       function(err, result) {
+         if(err) throw err;
+         if(!result) {
+           client.end();
+           res.status(202).send('Could not find user reviews');
+         } else {
+          client.end();
+          return res.status(201).send(result);
+         }
+
+      })s
+
+    })
 
 
 
