@@ -52,9 +52,11 @@ angular.module('ridehook.reviews', [])
   }
 
   var addReview = function(review) {
+    console.log('add review: ' + review);
     return $http({
       method: 'POST',
-      url: 'api/reviews/addReview'
+      url: 'api/reviews/addReview',
+      data: review
     })
   }
 
