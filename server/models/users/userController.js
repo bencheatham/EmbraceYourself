@@ -43,7 +43,7 @@ function newUser(data, req, res, client) {
 
     client.query("SELECT * FROM users WHERE username = $1", [data.username], function(err, result) {
       if(err) throw err;
-      if (result) {
+      if (result.rows.length > 0) {
         client.end();
         return res.status(202).send("User already exists!");
       } else {
@@ -69,7 +69,7 @@ function loginUser(data, req, res, client) {
 
     client.query("SELECT * FROM users WHERE username = $1 AND password = $2", [data.username, data.password], function(err, result) {
       if(err) throw err;
-      if (!result) {
+      if (result.rows.length === 0) {
         client.end();
         res.status(202).send("Incorrect username and/or password!");
       } else {
