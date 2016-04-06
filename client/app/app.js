@@ -47,6 +47,14 @@ angular.module('ridehook', [
 // .run(function ($rootScope, $location) {
 
 // })
+
+.factory('searchResults', function(){
+ var obj = {
+  results: []
+ }
+ return obj;
+})
+
 .controller('AppCtrl', function ($scope, $mdDialog ) {
 
   $scope.showSignUp = function(ev) {
@@ -78,6 +86,7 @@ angular.module('ridehook', [
     $scope.cancel = function() {
       $mdDialog.cancel();
     };
+
 
     $scope.newUser = function(information) {
 
@@ -124,13 +133,16 @@ angular.module('ridehook', [
         url: '/data/users/login',
         data: information
       }).then(function (response){
-        // if (err){
-        //   console.log('cat: ', err)
-        // } else {
+        if (response.status ===202){
+          console.log("Username not valid.")
+        } else{
           console.log(response.data);
-          // console.log(response)
           $mdDialog.hide(information);
+          // console.log(response)
+         }
         // }
+      }, function(err){
+        console.log("error");
       });
     };
   }
