@@ -1,22 +1,25 @@
 body {
-    width: 100%;
-}
-#div-main {
-    width: 100%;
-    margin: auto;
-}
-#div-main h3 {
-    text-align: center;
-}
-.div-title {
-    text-align: center;
-    padding-top: 100px;
-    padding-bottom: 20px;
-}
-#container {
-    text-align: center;
+	width: 100%;
 }
 
+#div-main {
+	width: 100%;
+	margin: auto;
+}
+
+#div-main h3 {
+	text-align: center;
+}
+
+.div-title {
+	text-align: center;
+	padding-top: 100px;
+	padding-bottom: 20px;
+}
+
+#container {
+	text-align: center;
+}
 
 /*home below */
 
@@ -50,13 +53,19 @@ body {
 
 }
 
-
-
 /* Trip View Styles */
 
-/*form style here*/
+#tripForm {
+	width: 600px;
+	margin: 0 auto;
+	border: 1px solid black;
+}
+
+#textarea-description {
+	width: 500px;
+	height: 50px;
+}
 
 #input-pickup-location {
-	width: 150px;
->>>>>>> merging with upstream master
+	width: 200px;
 }
