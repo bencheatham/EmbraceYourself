@@ -1,61 +1,56 @@
 body {
-<<<<<<< 7a98fa8187c682b62c62d6ccf20706f6789c4338
     width: 100%;
 }
-
 #div-main {
     width: 100%;
     margin: auto;
 }
-
-#div-searchboxes{
-	position: absolute;
-	top: 60.5%;
-	left: 50%;
-	transform: translate(-50%, 0%);
-
-}
-
 #div-main h3 {
     text-align: center;
-	position: absolute;
-	top: 30.5%;
-	left: 50%;
-	transform: translate(-50%, 0%);
-
 }
-
 .div-title {
     text-align: center;
     padding-top: 100px;
     padding-bottom: 20px;
-
 }
-
 #container {
     text-align: center;
-=======
-	width: 100%;
 }
 
-#div-main {
-	width: 100%;
-	margin: auto;
+
+/*home below */
+
+#home-main {
+    width: 100%;
+    margin: auto;
 }
 
-#div-main h3 {
-	text-align: center;
+#home-main h3 {
+    text-align: center;
+	position: absolute;
+	top: 35.5%;
+	left: 50%;
+	transform: translate(-50%, 0%);
+
 }
 
-.div-title {
-	text-align: center;
-	padding-top: 100px;
-	padding-bottom: 20px;
+#howItWorks{
+	position: absolute;
+	top: 55.0%;
+	left: 50%;
+	transform: translate(-50%, 0%);
+
 }
 
-#container {
-	text-align: center;
+#div-searchboxes{
+	position: absolute;
+	top: 75.5%;
+	left: 50%;
+	transform: translate(-50%, 0%);
+
 }
+
+
 
 /* Trip View Styles */
 

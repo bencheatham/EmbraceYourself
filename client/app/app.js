@@ -2,6 +2,7 @@
 angular.module('ridehook', [
   'ridehook.trips',
   'ridehook.messages',
+  'ridehook.home',
   //'ridehook.auth',
   'ngRoute', 
   'ngMaterial'
@@ -32,6 +33,11 @@ angular.module('ridehook', [
      templateUrl: 'app/messages/messages.html',
      controller: 'MessagesController',
      authenticate: true
+    })
+    .when('/home', {
+      templateUrl: 'app/home/home.html',
+      controller: 'HomeController',
+      authenticate: false
     })
     .otherwise({
      redirectTo: '/'
