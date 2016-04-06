@@ -1,10 +1,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
- 
 // database dependencies
 var pg = require('pg');
-
-var helper = require('./server/config/helpers.js')
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/test';
 
 
 
@@ -32,14 +30,14 @@ app.use(express.static(__dirname + '/client'));
 // NOT needed, kept for testing purposes
 app.get('/data/users', function (req, res) {
   console.log("Get Received!");
-    var client = helper.createClient();
-    userController.getUsers(req, res, client);
+  var client = new pg.Client(connectionString);
+  userController.getUsers(req, res, client);
 });
 
 app.post('/data/users/signup', function (req, res) {
   console.log("Post received!");
   if (req.body) {
-    var client = helper.createClient();
+    var client = new pg.Client(connectionString);
     userController.newUser(req.body, req, res, client);
   }
 });
@@ -47,7 +45,7 @@ app.post('/data/users/signup', function (req, res) {
 app.post('/data/users/login', function (req, res) {
   console.log("Post received!");
   if (req.body) {
-    var client = helper.createClient();
+    var client = new pg.Client(connectionString);
     userController.loginUser(req.body, req, res, client);
   }
 });
@@ -55,18 +53,25 @@ app.post('/data/users/login', function (req, res) {
 app.post('/data/trips/newtrip', function (req, res) {
   console.log("Post received!");
   if (req.body) {
-    var client = helper.createClient();
+    var client = new pg.Client(connectionString);
     tripController.newTrip(req.body, req, res, client);
+  }
+});
+
+app.post('/data/trips/findtrip', function (req, res) {
+  console.log("Post received!");
+  if (req.body) {
+    var client = new pg.Client(connectionString);
+    tripController.findTrip(req.body, req, res, client);
   }
 });
 
 app.listen(port, function() {
   console.log('App up and running on http://localhost: ', port);
-  userTableSure();
-  tripTableSure();
+  userTableSure(connectionString);
+  tripTableSure(connectionString);
 });
 
-
+//  Ben's line
 require('./server/config/middleware.js')(app, express);
-
 
