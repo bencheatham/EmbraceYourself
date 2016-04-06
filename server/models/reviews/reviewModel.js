@@ -1,8 +1,8 @@
 var pg = require('pg');
-var helper = require('../config/helpers.js')
+var helper = require('../../config/helpers.js')
 // var conString = "postgres://username:password@localhost/database";
 
-var tripTableSure = function () {
+var reviewTable = function () {
 
   var client = helper.createClient();
 

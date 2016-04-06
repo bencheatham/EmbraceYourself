@@ -1,6 +1,6 @@
 var Review = require('./reviewModel.js');
 
-var helper = require('../client/helper.js');
+var helper = require('../../config/helpers.js');
 
 module.exports = {
 
@@ -29,7 +29,7 @@ module.exports = {
       });
 
     });
-  }
+  },
 
   getReviews: function(req, res, next) {
 
@@ -53,7 +53,7 @@ module.exports = {
           return res.status(201).send(result);
          }
 
-      })s
+      })
 
     })
 

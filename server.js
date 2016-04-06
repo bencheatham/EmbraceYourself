@@ -3,7 +3,8 @@ var bodyParser = require('body-parser');
  
 // database dependencies
 var pg = require('pg');
-var connectionString = 'postgres://localhost:5432/test';
+
+var helper = require('./server/config/helpers.js')
 
 
 
@@ -31,14 +32,14 @@ app.use(express.static(__dirname + '/client'));
 // NOT needed, kept for testing purposes
 app.get('/data/users', function (req, res) {
   console.log("Get Received!");
-  var client = new pg.Client(connectionString);
-  userController.getUsers(req, res, client);
+    var client = helper.createClient();
+    userController.getUsers(req, res, client);
 });
 
 app.post('/data/users/signup', function (req, res) {
   console.log("Post received!");
   if (req.body) {
-    var client = new pg.Client(connectionString);
+    var client = helper.createClient();
     userController.newUser(req.body, req, res, client);
   }
 });
@@ -46,7 +47,7 @@ app.post('/data/users/signup', function (req, res) {
 app.post('/data/users/login', function (req, res) {
   console.log("Post received!");
   if (req.body) {
-    var client = new pg.Client(connectionString);
+    var client = helper.createClient();
     userController.loginUser(req.body, req, res, client);
   }
 });
@@ -54,7 +55,7 @@ app.post('/data/users/login', function (req, res) {
 app.post('/data/trips/newtrip', function (req, res) {
   console.log("Post received!");
   if (req.body) {
-    var client = new pg.Client(connectionString);
+    var client = helper.createClient();
     tripController.newTrip(req.body, req, res, client);
   }
 });
