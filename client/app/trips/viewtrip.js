@@ -1,4 +1,4 @@
-angular.module('view-trip.ridehook', [])
+angular.module('ridehook.tripview', [])
 
 .controller('ViewTripController', function($scope, $tripID, $userID, ViewTrip) {
 
@@ -62,7 +62,7 @@ angular.module('view-trip.ridehook', [])
   var getTrip = function(tripID) {
     return $http({
       method: 'GET',
-      url: '/api/trips/view_trip'
+      url: '/api/trips/view_trip',
       data: tripID
     })
     .then(function(resp) {
@@ -74,7 +74,7 @@ angular.module('view-trip.ridehook', [])
   var getUser = function(userID) {
     return $http({
       method: 'GET',
-      url: '/api/user/view_trip'
+      url: '/api/user/view_trip',
       data: userID
     })
     .then(function(resp) {
@@ -85,7 +85,7 @@ angular.module('view-trip.ridehook', [])
   var getReviews = function(userID) {
     return $http({
       method: 'GET',
-      url: '/apil/user/user_reviews'
+      url: '/apil/user/user_reviews',
       data: userID
     })
     .then(function(resp) {
@@ -96,7 +96,7 @@ angular.module('view-trip.ridehook', [])
   var getMessages = function(tripID) {
     return $http({
       method: 'GET',
-      url: '/api/trips/trip_messages'
+      url: '/api/trips/trip_messages',
       data: tripID 
     })
   }
