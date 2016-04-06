@@ -15,7 +15,7 @@ function getUsers(req, res, client) {
 
     query.on('end', function() {
       client.end();
-      return res.json(results);
+      return res.send(results);
     });
   }); // end client.connect
 }
