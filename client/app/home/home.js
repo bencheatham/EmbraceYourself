@@ -11,7 +11,7 @@ angular.module('ridehook.home', [])
 		var year = date.getFullYear();
 		var newDepartDate = "" + monthIndex + "/" + day + "/" + year;
 		information.depart_date = newDepartDate;
-		console.log(information)
+
 
 		return $http({
 			method: 'POST', 
@@ -19,8 +19,8 @@ angular.module('ridehook.home', [])
 			data: information
 		})
 		.then(function(resp){
-		console.log(resp);
-		return resp.results;
+		console.log(resp.data);
+		return resp.data;
 		})
 	}
 
