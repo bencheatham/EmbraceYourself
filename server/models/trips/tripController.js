@@ -44,7 +44,8 @@ function findTrip(data, req, res, client) {
       return res.status(500).json({ success: false, data: err});
     }
 
-    var query = client.query("SELECT FROM trips(pickup_point, dropoff_point, depart_date) values ($1, $2, $3)", dataInputs);
+    var query = client.query("SELECT * FROM trips WHERE pickup_point = $1 AND dropoff_point = $2 AND depart_date = $3", dataInputs);
+    // var query = client.query("SELECT * FROM trips");
 
     query.on('row', function(row) {
       results.push(row);
@@ -52,9 +53,7 @@ function findTrip(data, req, res, client) {
 
     query.on('end', function() {
       client.end();
-      return res.status(202).sends({
-        results: results
-      });
+      return res.send(results);
     });
 
   }); // end client.connect
