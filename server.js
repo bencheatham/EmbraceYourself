@@ -73,4 +73,4 @@ app.listen(port, function() {
 });
 
 //  Ben's line
-require('./server/config/middleware.js')(app, express);
+// require('./server/config/middleware.js')(app, express);
