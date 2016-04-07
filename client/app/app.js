@@ -3,6 +3,8 @@ angular.module('ridehook', [
   'ridehook.trips',
   'ridehook.messages',
   'ridehook.home',
+  'ridehook.reviews',
+  'ridehook.tripview',
   //'ridehook.auth',
   'ngRoute', 
   'ngMaterial'
@@ -28,6 +30,16 @@ angular.module('ridehook', [
      templateUrl: 'app/trips/viewtrip.html',
      controller: 'ViewTripController',
      authenticate: true
+    })
+    .when('/addreview', {
+      templateUrl: 'app/reviews/addreview.html',
+      controller: 'ReviewController',
+      authenticate: true
+    })
+    .when('/userreviews', {
+      templateUrl: 'app/reviews/userreviews.html',
+      controller: 'ReviewController',
+      authenticate: true
     })
     .when('/messages', {
      templateUrl: 'app/messages/messages.html',
