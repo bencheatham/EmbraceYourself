@@ -1,46 +1,46 @@
 angular.module('ridehook.tripview', [])
 
-.controller('ViewTripController', function($scope, $tripID, $userID, ViewTrip) {
+.controller('ViewTripController', function($scope, /*$tripID, $userID,*/ ViewTrip) {
 
-  var tripID = $tripID;
-  var userID = $userID;
+  var tripID = 1;//$tripID;
+  //var userID = $userID;
 
   $scope.getTrip = function(tripID) {
     ViewTrip.getTrip(tripID)
-     .then(function() {
+     .then(function(data) {
        $scope.trip = data;
        userID = $scope.trip.userID
      })
-     .catch(function(error) {
-      console.log(error + tripID + ' this trip did not load.');
-     })
-     .then(function(userID) {
-       ViewTrip.getUser(userID)
-        .then(function() {
-          $scope.user = data;
-        })
-        .catch(function(error) {
-         console.log(error);
-        })
-         .then(function() {
-          ViewTrip.getReviews(userID)
-           .then(function(data) {
-            $scope.reviews = data;
-           })
-           .catch(function(error) {
-            console.log(error);
-           })
-           .then(function() {
-            ViewTrip.getMessages(tripID)
-             .then(function(data) {
-              $scope.messages = data;
-             })
-             .catch(function(error) {
-               console.log(error);
-             })
-           })
-         })
-     })
+     // .catch(function(error) {
+     //  console.log(error + tripID + ' this trip did not load.');
+     // })
+     // .then(function(userID) {
+     //   ViewTrip.getUser(userID)
+     //    .then(function() {
+     //      $scope.user = data;
+     //    })
+     //    .catch(function(error) {
+     //     console.log(error);
+     //    })
+     //     .then(function() {
+     //      ViewTrip.getReviews(userID)
+     //       .then(function(data) {
+     //        $scope.reviews = data;
+     //       })
+     //       .catch(function(error) {
+     //        console.log(error);
+     //       })
+     //       .then(function() {
+     //        ViewTrip.getMessages(tripID)
+     //         .then(function(data) {
+     //          $scope.messages = data;
+     //         })
+     //         .catch(function(error) {
+     //           console.log(error);
+     //         })
+     //       })
+     //     })
+     // })
   };
 
 
