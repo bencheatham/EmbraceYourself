@@ -16,6 +16,8 @@
           <td> Arrival Time </td>
           <td> Seats </td>
           <td> User ID </td>
+          <td> First Name </td>
+          <td> Last Name </td>
         </tr>
         <tr ng-repeat="result in results" ng-click="sendTrip(result.id)">
           <!-- <td> Result: {{ results.length > 0 ? $index + 1 : 0 }}</td> -->
@@ -30,6 +32,8 @@
           <td> {{ result.arrival_time }} </td>
           <td> {{ result.seats }} </td>
           <td> {{ result.user_id }} </td>
+          <td> {{ result.first_name }} </td>
+          <td> {{ result.last_name }} </td>
         </tr>
     </table>
     <div ng-show="results.length < 1"> No Results </div>
