@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="styles/styles.css" />
     <link rel="stylesheet" href="/scripts/angular-material/angular-material.css">
   </head>
-  
+
   <body >
     <div id="signup" ng-controller="AppCtrl" id="popupContainer" ng-cloak="" >
       <div layout="row" layout-wrap="" layout-margin="" layout-align="end">
@@ -37,7 +37,7 @@
                 </md-content>
               </md-tab>
             </md-tabs>
-          <md-dialog-actions layout="row"> 
+          <md-dialog-actions layout="row">
             <md-button ng-click="hide()">Cancel</md-button>
             <md-button ng-click="newUser({'username': username, 'password': password})" style="margin-right:20px;" >
               Sign Up
@@ -47,7 +47,7 @@
         </md-dialog>
 
       </script>
-      
+
     </div>
      <div id="signin" ng-controller="AppCtrl" id="popupContainer" ng-cloak="" >
       <div  layout-wrap="" layout-margin="" layout-align="end">
@@ -66,7 +66,7 @@
                 </md-content>
               </md-tab>
             </md-tabs>
-          <md-dialog-actions layout="row"> 
+          <md-dialog-actions layout="row">
             <md-button ng-click="hide()">Cancel</md-button>
             <md-button ng-click="loginUser({'username': username, 'password': password})" style="margin-right:20px;" >
               Sign In
@@ -84,13 +84,14 @@
 
     <!-- the ng-view directive is where our templates will be loaded into when navigated to -->
     <div ng-view></div>
-  
+
     <script src="/scripts/angular/angular.js"></script>
     <script src="/scripts/angular-route/angular-route.js"></script>
     <script src="/scripts/angular-aria/angular-aria.js"></script>
     <script src="/scripts/angular-animate/angular-animate.js"></script>
-    <script src="/scripts/angular-material/angular-material.js"></script>  
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <script src="/scripts/angular-material/angular-material.js"></script>
+
+    <script src="app/search/search.js"></script>
     <script src="app/trips/trips.js"></script>
     <script src="app/messages/messages.js"></script>
     <script src="app/home/home.js"></script>

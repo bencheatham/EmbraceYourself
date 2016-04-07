@@ -68,11 +68,9 @@ app.post('/data/trips/findtrip', function (req, res) {
 
 app.listen(port, function() {
   console.log('App up and running on http://localhost: ', port);
-  userTableSure(connectionString);
-  tripTableSure(connectionString);
+  userTableSure(connectionString, tripTableSure);
+  // tripTableSure(connectionString);
 });
 
 //  Ben's line
-require('./server/config/middleware.js')(app, express);
-
-
+// require('./server/config/middleware.js')(app, express);
