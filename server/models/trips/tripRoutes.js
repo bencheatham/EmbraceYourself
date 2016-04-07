@@ -4,7 +4,7 @@ module.exports = function (app) {
 
 
   console.log('IN TRIP CONTROLLER......');
-  app.get('/viewTrip', tripController.getTrip);
+  app.post('/view_trip', tripController.getTrip);
 
 
 }

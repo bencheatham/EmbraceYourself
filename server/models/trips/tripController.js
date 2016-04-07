@@ -45,31 +45,23 @@ function getTrip(req, res) {
 
     var tripID = req.body.tripID;
 
+    console.log(tripID)
+    var query = client.query("SELECT * FROM trips WHERE id = $1", [tripID]);
 
+    var foundTrip = [];
 
-    client.query("SELECT * FROM trips WHERE tripID = $1", [tripID], function(err, result) {
-      if(err) throw err;
-      if (!result) {
-        client.end();
-        res.status(202).send("Trip could not be found");
-      } else {
-        client.end();
-        return res.status(201).send(result);
-      }
-    })
-
-    var foundTrip;
-
-    query.on('trip', function(trip) {
-      foundTrip = trip;
+    query.on('row', function(row) {
+      console.log(row)
+      foundTrip.push(row);
     });
 
     query.on('end', function() {
       client.end();
       return res.send(foundTrip);
-    })
+    });
 
-  });
+    });
+
 }
 
 function findTrip(data, req, res, client) {

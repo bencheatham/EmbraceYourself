@@ -2,13 +2,26 @@ angular.module('ridehook.tripview', [])
 
 .controller('ViewTripController', function($scope, /*$tripID, $userID,*/ ViewTrip) {
 
-  var tripID = 1;//$tripID;
+  //$tripID;
   //var userID = $userID;
 
-  $scope.getTrip = function(tripID) {
+
+  $scope.pubTrip = function() {
+
+    $scope.startpoint = 'San Fran';
+    $scope.destination = 'Seattle';
+
+  }
+
+  $scope.getThisTrip = function(tripID) {
+    
+    var tripID = 1;
+
     ViewTrip.getTrip(tripID)
-     .then(function(data) {
-       $scope.trip = data;
+     .then(function(resp) {
+      //["command", "rowCount", "oid", "rows", "fields", "_parsers", "rowAsArray"]
+      console.log(resp.data);
+       $scope.trip = resp.data;
        userID = $scope.trip.userID
      })
      // .catch(function(error) {
@@ -58,12 +71,16 @@ angular.module('ridehook.tripview', [])
 .factory('ViewTrip', function($http) { 
 
 
-
   var getTrip = function(tripID) {
+
+    var data = {};
+    data.tripID = tripID; 
+    console.log(data)
+
     return $http({
-      method: 'GET',
+      method: 'POST',
       url: '/api/trips/view_trip',
-      data: tripID
+      data: data
     })
     .then(function(resp) {
       return resp;
