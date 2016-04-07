@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 // database dependencies
 var pg = require('pg');
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/test';
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/bencheatham';
 
 
 
@@ -12,6 +12,9 @@ var userController = require('./server/models/users/userController.js');
 // database trips
 var tripTableSure = require('./server/models/trips/tripModel.js').tripTableSure;
 var tripController = require('./server/models/trips/tripController.js');
+
+
+
 
 var app = express();
 var port = process.env.PORT || 8000;
@@ -73,4 +76,4 @@ app.listen(port, function() {
 });
 
 //  Ben's line
-// require('./server/config/middleware.js')(app, express);
+require('./server/config/middleware.js')(app, express);
