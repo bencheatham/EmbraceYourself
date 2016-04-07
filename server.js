@@ -13,6 +13,9 @@ var userController = require('./server/models/users/userController.js');
 var tripTableSure = require('./server/models/trips/tripModel.js').tripTableSure;
 var tripController = require('./server/models/trips/tripController.js');
 
+
+
+
 var app = express();
 var port = process.env.PORT || 8000;
 
@@ -73,4 +76,4 @@ app.listen(port, function() {
 });
 
 //  Ben's line
-// require('./server/config/middleware.js')(app, express);
+require('./server/config/middleware.js')(app, express);

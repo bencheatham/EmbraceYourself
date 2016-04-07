@@ -2,14 +2,29 @@ var Review = require('./reviewModel.js');
 
 var helper = require('../../config/helpers.js');
 
+console.log('about to start')
+
+Review.reviewTable();
+
+
 module.exports = {
 
   addReview: function(req, res, next) {
 
     var client = helper.createClient();
 
+    var review = [
+      1,
+      2,
+      req.body.review_stars,
+      req.body.review,
+      req.body.created_on,
+      null
+    ];
 
-    console.log(req.body);
+
+
+    console.log(review);
 
     client.connect(function(err) {
       if(err) {
@@ -23,8 +38,8 @@ module.exports = {
        review_stars, \
        review, \
        created_on, \
-       modified_on, \
-       values ($1, $2, $3, $4, $5, $6)", Object.keys(req.body));
+       modified_on) \
+       values ($1, $2, $3, $4, $5, $6)", review);
 
       query.on('end', function() {
         client.end();
@@ -56,9 +71,9 @@ module.exports = {
           return res.status(201).send(result);
          }
 
-      })
+      });
 
-    })
+    });
 
 
 

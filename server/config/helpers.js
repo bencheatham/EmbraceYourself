@@ -1,5 +1,5 @@
 var pg = require('pg');
-var connectionString = 'postgres://localhost:5432/bencheatham';
+var connectionString = 'postgres://localhost:5432/test';
 
 module.exports = {
 
