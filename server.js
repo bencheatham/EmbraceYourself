@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 // database dependencies
 var pg = require('pg');
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/bencheatham';
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/test';
 
 
 
