@@ -10,7 +10,7 @@ var reviewTable = function () {
     if(err) {
       return console.error('could not connect to postgres', err);
     }
-    // date and time are still VARCHAR as well as separate... for now
+
     var query = client.query('CREATE TABLE IF NOT EXISTS reviews(id SERIAL PRIMARY KEY, \
       reviewed_userID INT, \
       reviewing_userID INT, \
@@ -18,9 +18,10 @@ var reviewTable = function () {
       review VARCHAR(255), \
       created_on VARCHAR(255), \
       modified_on VARCHAR(255) \
-     ');
+      )');
 
     query.on('end', function() { client.end(); });
+
   });
 
 }
@@ -28,3 +29,4 @@ var reviewTable = function () {
 module.exports = {
   reviewTable: reviewTable
 };
+
