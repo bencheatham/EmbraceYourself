@@ -1,4 +1,4 @@
-var helper = require('../client/helper.js');
+var helper = require('../../config/helpers.js');
 
 
 function newTrip(data, req, res, client) {
@@ -33,7 +33,7 @@ function newTrip(data, req, res, client) {
 }
 
 
-function vewTrip(data, req, res) {
+function getTrip(data, req, res) {
 
   var client = helper.createClient();
 
@@ -91,5 +91,5 @@ function findTrip(data, req, res, client) {
 module.exports = {
   newTrip: newTrip,
   findTrip: findTrip,
-  viewTrip: viewTrip
+  getTrip: getTrip
 };

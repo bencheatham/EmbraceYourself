@@ -23,6 +23,6 @@ module.exports = function (app, express) {
   app.use(helpers.errorHandler);
 
   // inject our routers into their respective route files
-  require('../trips/tripRoutes.js')(tripRouter);
-  require('../reviews/reviewRoutes.js')(reviewRouter);
+  require('../models/trips/tripRoutes.js')(tripRouter);
+  require('../models/reviews/reviewRoutes.js')(reviewRouter);
 };

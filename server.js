@@ -1,6 +1,5 @@
 var express = require('express');
 var bodyParser = require('body-parser');
- 
 // database dependencies
 var pg = require('pg');
 var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/test';
@@ -75,5 +74,3 @@ app.listen(port, function() {
 
 //  Ben's line
 require('./server/config/middleware.js')(app, express);
-
-
