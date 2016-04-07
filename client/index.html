@@ -16,13 +16,24 @@
 
       <script type="text/ng-template" id="dialog1.tmpl.html"></script>
         <script type="text/ng-template" id="tabDialog.tmpl.html">
-        <md-dialog>
+        <md-dialog flex="25"  >
           <form>
-            <md-tabs md-dynamic-height md-border-bottom>
+            <md-tabs md-border-bottom>
               <md-tab label="Sign Up">
-                <md-content class="md-padding">
-                  <input type="text" placeholder="username" ng-model="username" >Username</input>
-                  <input type="text" placeholder="password" ng-model="password" >Password</input>
+                <md-content layout="column" class="md-padding">
+                  <p>Username</p>
+                  <input  type="text" placeholder="username" ng-model="username" ></input>
+                  <p>Password</p>
+                  <input type="text" placeholder="password" ng-model="password"></input>
+                  <p>First Name</p>
+                  <input type="text" placeholder="first_name" ng-model="first_name" ></input>
+                  <p>Last Name</p>
+                  <input type="text" placeholder="last_name" ng-model="last_name" ></input>
+                   <p>City</p>
+                   <input type="text" placeholder="city" ng-model="city" ></input>
+                   <p>State</p>
+                   <input type="text" placeholder="state" ng-model="state" ></input>
+
                 </md-content>
               </md-tab>
             </md-tabs>
@@ -47,9 +58,11 @@
           <form>
             <md-tabs md-dynamic-height md-border-bottom>
               <md-tab label="Sign In">
-                <md-content class="md-padding">
-                  <input type="text" placeholder="username" ng-model="username" >Username</input>
-                  <input type="text" placeholder="password" ng-model="password" >Password</input>
+                <md-content layout="column" class="md-padding">
+                  <p>Username</p>
+                  <input type="text" placeholder="username" ng-model="username"></input>
+                  <p>Password</p>
+                  <input type="text" placeholder="password" ng-model="password" ></input>
                 </md-content>
               </md-tab>
             </md-tabs>
@@ -77,7 +90,7 @@
     <script src="/scripts/angular-aria/angular-aria.js"></script>
     <script src="/scripts/angular-animate/angular-animate.js"></script>
     <script src="/scripts/angular-material/angular-material.js"></script>  
-
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
     <script src="app/trips/trips.js"></script>
     <script src="app/messages/messages.js"></script>
     <script src="app/home/home.js"></script>

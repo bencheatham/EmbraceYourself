@@ -1,6 +1,6 @@
 angular.module('ridehook.home', [])
 
-.controller('HomeController', function ($scope, $http){
+.controller('HomeController', function ($scope, $http, searchResults){
 
 
 	$scope.searchTrip = function(information){
@@ -19,7 +19,8 @@ angular.module('ridehook.home', [])
 			data: information
 		})
 		.then(function(resp){
-		console.log(resp.data);
+		searchResults.results = resp.data;
+		 console.log(resp.data);
 		return resp.data;
 		})
 	}
