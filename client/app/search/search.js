@@ -6,7 +6,10 @@ angular.module('ridehook.search', [])
 
   $scope.results = searchResults.results;
 
-	$scope.filterTrips = function(information){
-	};
+  if ($scope.results.length > 0) {
+    $scope.from = $scope.results[0].pickup_point;
+    $scope.to = $scope.results[0].dropoff_point;
+    initMap($scope.from, $scope.to)
+  }
 
 });
