@@ -6,9 +6,10 @@ angular.module('ridehook', [
   'ridehook.reviews',
   'ridehook.tripview',
   //'ridehook.auth',
-  'ngRoute', 
+  'ridehook.search',
+  'ngRoute',
   'ngMaterial'
- ]) 
+ ])
 // Angular's within-the-page routing system (uses 'angular-route')
 .config(function($routeProvider, $httpProvider) {
   $routeProvider
@@ -26,7 +27,7 @@ angular.module('ridehook', [
      controller: 'TripsController',
      authenticate: true
     })
-    .when('/viewtrip', {  
+    .when('/viewtrip', {
      templateUrl: 'app/trips/viewtrip.html',
      controller: 'ViewTripController',
      authenticate: true
@@ -49,6 +50,11 @@ angular.module('ridehook', [
     .when('/home', {
       templateUrl: 'app/home/home.html',
       controller: 'HomeController',
+      authenticate: false
+    })
+    .when('/search', {
+      templateUrl: 'app/search/search.html',
+      controller: 'SearchController',
       authenticate: false
     })
     .otherwise({
@@ -160,6 +166,3 @@ angular.module('ridehook', [
   }
 
 });
-
-
-

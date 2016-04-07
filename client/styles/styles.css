@@ -69,3 +69,16 @@ body {
 #input-pickup-location {
 	width: 200px;
 }
+/* search view -- start */
+#search-main table, th, td {
+  border: 1px solid black;
+}
+
+#search-main td {
+    width: 10%;
+}
+
+/*#search-main {
+  border: 1px solid blue;
+}*/
+/* search view -- end */

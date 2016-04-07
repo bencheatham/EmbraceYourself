@@ -6,7 +6,7 @@ var pg = require('pg');
 // var conString = "postgres://username:password@localhost/database";
 // var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/test';
 
-var userTableSure = function (connectionString) {
+var userTableSure = function (connectionString, tripTableSure) {
 
   var client = new pg.Client(connectionString);
 
@@ -16,7 +16,10 @@ var userTableSure = function (connectionString) {
     }
     var query1 = client.query('CREATE TABLE IF NOT EXISTS users(id SERIAL PRIMARY KEY, username VARCHAR(255), password VARCHAR(255), first_name VARCHAR(255), last_name VARCHAR(255), age INTEGER, profile_pic VARCHAR(255),  city VARCHAR(255), state VARCHAR(255), zip_code INTEGER)');
 
-    query1.on('end', function() { client.end(); });
+    query1.on('end', function() {
+      client.end();
+      tripTableSure(connectionString);
+    });
   });
 
 }

@@ -2,9 +2,9 @@
 
 angular.module('ridehook.search', [])
 
-.controller('SearchController', function ($scope, $http){
+.controller('SearchController', function ($scope, $http, searchResults){
 
-  $scope.results = null;
+  $scope.results = searchResults.results;
 
 	$scope.filterTrips = function(information){
 	};
