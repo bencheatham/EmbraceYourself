@@ -57,6 +57,38 @@ function getTrip(data, req, res) {
   });
 }
 
+// Keep this for review!
+// function findTrip(data, req, res, client) {
+//
+//   var results = [];
+//
+//   var dataInputs = [
+//     data.pickup_point,
+//     data.dropoff_point,
+//     data.depart_date, // "04/08/2016" string
+//   ];
+//
+//   client.connect(function(err) {
+//     if(err) {
+//       console.error('Post failed!');
+//       return res.status(500).json({ success: false, data: err});
+//     }
+//
+//     var query = client.query("SELECT * FROM trips WHERE pickup_point = $1 AND dropoff_point = $2 AND depart_date = $3", dataInputs);
+//     // var query = client.query("SELECT * FROM trips");
+//
+//     query.on('row', function(row) {
+//       results.push(row);
+//     });
+//
+//     query.on('end', function() {
+//       client.end();
+//       return res.send(results);
+//     });
+//
+//   }); // end client.connect
+// }
+
 function findTrip(data, req, res, client) {
 
   var results = [];
@@ -73,7 +105,7 @@ function findTrip(data, req, res, client) {
       return res.status(500).json({ success: false, data: err});
     }
 
-    var query = client.query("SELECT * FROM trips WHERE pickup_point = $1 AND dropoff_point = $2 AND depart_date = $3", dataInputs);
+    var query = client.query("SELECT * FROM trips LEFT JOIN users ON trips.user_id = users.id WHERE pickup_point = $1 AND dropoff_point = $2 AND depart_date = $3", dataInputs);
     // var query = client.query("SELECT * FROM trips");
 
     query.on('row', function(row) {
