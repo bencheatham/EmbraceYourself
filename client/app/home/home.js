@@ -22,7 +22,7 @@ angular.module('ridehook.home', [])
 			searchResults.results = resp.data;
 		 	console.log(resp.data);
 			// return resp.data;
-			$location.path('/search');
+			$location.url('/search');
 		})
 	}
 
