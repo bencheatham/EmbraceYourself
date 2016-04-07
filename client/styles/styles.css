@@ -78,6 +78,29 @@ body {
     width: 10%;
 }
 
+/*#searchcontainer {
+  border: 1px solid blue;
+}*/
+
+#map {
+	border: 1px solid red;
+	height: 300px;
+	width: 75%;
+}
+/*#floating-panel {
+	position: absolute;
+	top: 10px;
+	left: 25%;
+	z-index: 5;
+	background-color: #fff;
+	padding: 5px;
+	border: 1px solid #999;
+	text-align: center;
+	font-family: 'Roboto','sans-serif';
+	line-height: 30px;
+	padding-left: 10px;
+}*/
+
 /*#search-main {
   border: 1px solid blue;
 }*/
