@@ -67,10 +67,17 @@ angular.module('ridehook', [
 // })
 
 .factory('searchResults', function(){
- var obj = {
+ var sObj = {
   results: []
  }
- return obj;
+ return sObj;
+})
+
+.factory('tripIDFactory', function(){
+ var tObj = {
+  tripID: null
+ }
+ return tObj;
 })
 
 .controller('AppCtrl', function ($scope, $mdDialog ) {
