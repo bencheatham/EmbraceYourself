@@ -5,6 +5,32 @@ angular.module('ridehook.tripview', [])
   //$tripID;
   //var userID = $userID;
 
+   $scope.trip = {};
+/*
+   arrival_date: "4/21/2016",
+   arrival_time: "4:20PM",
+   depart_date: "4/14/2016",
+   depart_time: "3:30PM",
+   description: "bblasdfasd asdfsdf asdfsafa sadf",
+   dropoff_point: "san francisco",
+   id: 1,
+   pickup_point: "seattle",
+   seats: 3,
+   user_id: 1
+*/
+   // $scope.trip.arrival_date = "";
+   // $scope.trip.arrival_time = "";
+   // $scope.trip.departure_date = "";
+   // $scope.trip.departure_time = "";
+   // $scope.trip.description = "";
+   // $scope.trip.dropoff_point = "";
+   // $scope.trip.pickup_point = "";
+   // $scope.trip.seats = "";
+   // $scope.trip.user_id = "";
+   // $scope.trip.id = "";
+
+
+
 
   $scope.pubTrip = function() {
 
@@ -20,8 +46,23 @@ angular.module('ridehook.tripview', [])
     ViewTrip.getTrip(tripID)
      .then(function(resp) {
       //["command", "rowCount", "oid", "rows", "fields", "_parsers", "rowAsArray"]
-      console.log(resp.data);
-       $scope.trip = resp.data;
+      console.log(resp.data[0]);
+       $scope.trip = resp.data[0];
+
+
+       $scope.trip.arrival_date = resp.data[0].arrival_date;
+       $scope.trip.arrival_time = resp.data[0].arrival_time;
+       $scope.trip.depart_date = resp.data[0].depart_date;
+       $scope.trip.depart_time = resp.data[0].depart_time;
+       $scope.trip.description = resp.data[0].description;
+       $scope.trip.dropoff_point = resp.data[0].dropoff_point;
+       $scope.trip.pickup_point = resp.data[0].pickup_point;
+       $scope.trip.seats = resp.data[0].seats;
+       $scope.trip.user_id = resp.data[0].user_id;
+       $scope.trip.id = resp.data[0].id;
+
+
+
        userID = $scope.trip.userID
      })
      // .catch(function(error) {

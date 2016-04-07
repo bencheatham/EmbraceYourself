@@ -1,7 +1,7 @@
 <div id="container" class="trip-view">
 
 <div class="trip-head">
-<p>{{startpoint}} -> {{destination}}</p>
+<p>{{trip.pickup_point}} -> {{trip.dropoff_point}}</p>
 </div>
 
 
@@ -26,6 +26,53 @@
     </div>
 
   </form>
+
+
+
+  <div class="trip-view">
+
+    <div id="container" class="main-block">
+
+      <ul>
+
+        <li class="main-trip-block">
+          <span class="label"> Pickup Point: </span>
+          <span class="detail">{{ trip.pickup_point}}</span>
+        </li>
+        <li class="main-trip-block">
+          <span class="label"> Dropoff Point: </span>
+          <span class="detail"> {{ trip.dropoff_point}}</span>
+        </li>
+        <li class="main-trip-block">
+          <span class="label"> Date: </span>
+          <div class="detail"> {{trip.depart_date}} at {{trip.depart_time}} </div>
+        </li>
+        <li class="main-trip-block">
+          <span class="label"> Details:  </span>
+          <span class="detail"> </span>
+
+        </li>
+
+      </ul>
+
+
+
+
+      {{  trip.departure_date}}
+      <!--      trip.arrival_time
+           trip.departure_date
+         trip.departure_time
+         trip.description
+         trip.dropoff_point
+         trip.pickup_point
+         trip.seats
+         trip.user_id
+         trip.id
+      }} -->
+
+    </div>
+
+  </div>
 
 
 
