@@ -33,7 +33,7 @@ function newTrip(data, req, res, client) {
 }
 
 
-function getTrip(data, req, res) {
+function getTrip(req, res) {
 
   var client = helper.createClient();
 
@@ -43,7 +43,11 @@ function getTrip(data, req, res) {
       return res.status(500).json({ success: false, data: err});
     }
 
-    client.query("SELECT * FROM trips WHERE tripID = $1", [data.tripID], function(err, result) {
+    var tripID = req.body.tripID;
+
+
+
+    client.query("SELECT * FROM trips WHERE tripID = $1", [tripID], function(err, result) {
       if(err) throw err;
       if (!result) {
         client.end();
@@ -52,7 +56,18 @@ function getTrip(data, req, res) {
         client.end();
         return res.status(201).send(result);
       }
+    })
+
+    var foundTrip;
+
+    query.on('trip', function(trip) {
+      foundTrip = trip;
     });
+
+    query.on('end', function() {
+      client.end();
+      return res.send(foundTrip);
+    })
 
   });
 }
