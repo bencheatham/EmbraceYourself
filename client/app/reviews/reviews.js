@@ -1,18 +1,21 @@
-angular.module('reviews.ridehook', [])
+angular.module('ridehook.reviews', [])
 
 .controller('ReviewController', function($scope, Reviews) {
 
   $scope.review = {};
 
+  $scope.message = 'Leave a Review!'
+
   $scope.addReview = function() {
 
+    console.log('here!!!!')
 
     var review = {
      reviewed_userID: $scope.review.reviewed_userID,
      reviewing_userID: $scope.review.reviewing_userID,
      review: $scope.review.review,
      review_stars: $scope.review.stars,
-     created_on: Date.now();
+     created_on: Date.now()
     }
 
     $scope.loading = true;
@@ -53,6 +56,13 @@ angular.module('reviews.ridehook', [])
       method: 'POST',
       url: 'api/reviews/addReview'
     })
+  }
+
+
+  return {
+    getCount: getCount,
+    getUserReviews: getUserReviews,
+    addReview: addReview
   }
 
 

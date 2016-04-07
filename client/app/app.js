@@ -3,6 +3,8 @@ angular.module('ridehook', [
   'ridehook.trips',
   'ridehook.messages',
   'ridehook.home',
+  'ridehook.reviews',
+  'ridehook.tripview',
   //'ridehook.auth',
   'ngRoute', 
   'ngMaterial'
