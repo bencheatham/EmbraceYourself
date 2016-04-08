@@ -106,7 +106,6 @@ function findTrip(data, req, res, client) {
     }
 
     var query = client.query("SELECT * FROM trips LEFT JOIN users ON trips.user_id = users.id WHERE pickup_point = $1 AND dropoff_point = $2 AND depart_date = $3", dataInputs);
-    // var query = client.query("SELECT * FROM trips");
 
     query.on('row', function(row) {
       results.push(row);
