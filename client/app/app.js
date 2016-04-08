@@ -7,8 +7,10 @@ angular.module('ridehook', [
         'ridehook.tripview',
         //'ridehook.auth',
         'ridehook.search',
+        'ridehook.profile',
         'ngRoute',
         'ngMaterial'
+
     ])
     // Angular's within-the-page routing system (uses 'angular-route')
     .factory('authInterceptor', function($rootScope, $q, $window) {
@@ -79,7 +81,12 @@ angular.module('ridehook', [
             .when('/search', {
                 templateUrl: 'app/search/search.html',
                 controller: 'SearchController',
-                authenticate: false
+                authenticate: true
+            })
+            .when('/profile',{
+                templateUrl: 'app/profile/profile.html',
+                controller: 'ProfileController',
+                authenticate: true
             })
             .otherwise({
                 redirectTo: '/home'
