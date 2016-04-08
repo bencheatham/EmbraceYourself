@@ -1,3 +1,5 @@
+var helper = require('../../config/helpers.js');
+
 // NOT needed, kept for testing purposes
 function getUsers(req, res, client) {
   var results = [];
@@ -82,8 +84,38 @@ function loginUser(data, req, res, client) {
   }); // end client.connect
 }
 
+function getUser(req, res) {
+
+  var client = helper.createClient();
+
+  console.log('Here in getUser')
+  console.log(req.body.userID)
+
+  var results = [];
+  client.connect(function(err) {
+    if(err) {
+      console.error('Get failed!');
+      return res.status(500).json({ success: false, data: err});
+    }
+
+    var query = client.query("SELECT * FROM users WHERE id = $1", [req.body.userID]);
+
+    query.on('row', function(row) {
+      results.push(row);
+    });
+
+    query.on('end', function() {
+      client.end();
+      return res.send(results);
+    });
+  }); // end client.connect
+}
+
+
+
 module.exports = {
   getUsers: getUsers,
   newUser: newUser,
-  loginUser: loginUser
+  loginUser: loginUser,
+  getUser: getUser
 };
