@@ -28,6 +28,7 @@ function newUser(data, req, res, client) {
     data.password,
     data.first_name,
     data.last_name,
+    data.email,
     data.age,
     data.profile_pic,
     data.city,
@@ -47,7 +48,7 @@ function newUser(data, req, res, client) {
         client.end();
         return res.status(202).send("User already exists!");
       } else {
-        var query = client.query("INSERT INTO users(username, password, first_name, last_name, age, profile_pic, city, state, zip_code) values ($1, $2, $3, $4, $5, $6, $7, $8, $9)", dataInputs);
+        var query = client.query("INSERT INTO users(username, password, first_name, last_name, email, age, profile_pic, city, state, zip_code) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)", dataInputs);
 
         query.on('end', function() {
           client.end();
