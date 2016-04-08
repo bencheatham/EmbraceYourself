@@ -8,32 +8,32 @@ angular.module('ridehook.trips', [])
   $scope.createTrip = function () {
 
     var date = new Date($scope.trip.startDate);
-        var day = date.getDate();
-        var monthIndex = date.getMonth() + 1;
-        var year = date.getFullYear();
-        var newDepartDate = "" + monthIndex + "/" + day + "/" + year;
-        $scope.trip.startDate = newDepartDate;
-        console.log($scope.trip.startDate);
+    var day = date.getDate();
+    var monthIndex = date.getMonth() + 1;
+    var year = date.getFullYear();
+    var newDepartDate = "" + monthIndex + "/" + day + "/" + year;
+    $scope.trip.startDate = newDepartDate;
+    console.log($scope.trip.startDate);
 
-        date = new Date($scope.trip.endDate);
-        day = date.getDate();
-        monthIndex = date.getMonth() + 1;
-        year = date.getFullYear();
-        var newArriveDate = "" + monthIndex + "/" + day + "/" + year;
-        $scope.trip.endDate = newArriveDate;
-        console.log($scope.trip.endDate);
+    date = new Date($scope.trip.endDate);
+    day = date.getDate();
+    monthIndex = date.getMonth() + 1;
+    year = date.getFullYear();
+    var newArriveDate = "" + monthIndex + "/" + day + "/" + year;
+    $scope.trip.endDate = newArriveDate;
+    console.log($scope.trip.endDate);
 
-		var tripObj = {
-			description: $scope.trip.description,
-			pickup_point: $scope.trip.pickup,
-			dropoff_point: $scope.trip.dropoff,
-			depart_date: $scope.trip.startDate,	//Date.parse($scope.trip.startDate),
-			depart_time: $scope.trip.departHour + ':' + $scope.trip.departMinute + $scope.trip.departTimeperiod,
-			arrival_date: $scope.trip.endDate,	//Date.parse($scope.trip.endDate),
-			arrival_time: $scope.trip.arriveHour + ':' + $scope.trip.arriveMinute + $scope.trip.arriveTimeperiod,
-			seats: Number($scope.trip.seats),
-			user_id: $window.sessionStorage.id 	// will reconfig this when we can get current user id from session
-		};
+	var tripObj = {
+		description: $scope.trip.description,
+		pickup_point: $scope.trip.pickup,
+		dropoff_point: $scope.trip.dropoff,
+		depart_date: $scope.trip.startDate,	//Date.parse($scope.trip.startDate),
+		depart_time: $scope.trip.departHour + ':' + $scope.trip.departMinute + $scope.trip.departTimeperiod,
+		arrival_date: $scope.trip.endDate,	//Date.parse($scope.trip.endDate),
+		arrival_time: $scope.trip.arriveHour + ':' + $scope.trip.arriveMinute + $scope.trip.arriveTimeperiod,
+		seats: Number($scope.trip.seats),
+		user_id: $window.sessionStorage.id 	// will reconfig this when we can get current user id from session
+	};
 
     // new trip dummy data
 
