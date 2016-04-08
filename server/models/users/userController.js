@@ -31,7 +31,7 @@ function newUser(data, req, res, client) {
     data.first_name,
     data.last_name,
     data.email,
-    data.age,
+    data.birth_date,
     data.profile_pic,
     data.city,
     data.state,
