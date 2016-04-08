@@ -146,6 +146,6 @@ module.exports = {
   getUsers: getUsers,
   newUser: newUser,
   loginUser: loginUser,
-  newProfile: newProfile,
+  newBiography: newBiography,
   getUser: getUser
 };
