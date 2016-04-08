@@ -1,6 +1,6 @@
 angular.module('ridehook.tripview', [])
 
-.controller('ViewTripController', function($scope, /*$tripID, $userID,*/ ViewTrip) {
+.controller('ViewTripController', function($scope, /*$tripID, $userID,*/ ViewTrip, tripIDFactory) {
 
   //$tripID;
   //var userID = $userID;
@@ -18,6 +18,11 @@ angular.module('ridehook.tripview', [])
    seats: 3,
    user_id: 1
 */
+
+  $scope.trip.window = "Within 1 hour";
+  $scope.trip.cargo = "1 suitcase";
+  $scope.trip.profile_pic = "../../assets/profile_pics/126717412.jpg";
+
    // $scope.trip.arrival_date = "";
    // $scope.trip.arrival_time = "";
    // $scope.trip.departure_date = "";
@@ -29,6 +34,7 @@ angular.module('ridehook.tripview', [])
    // $scope.trip.user_id = "";
    // $scope.trip.id = "";
 
+  $scope.userID = 1;
 
 
 
@@ -42,8 +48,17 @@ angular.module('ridehook.tripview', [])
   $scope.getThisTrip = function(tripID) {
     
     var tripID = 1;
+   
+    console.log('tripIDFactory.tripID')
 
-    ViewTrip.getTrip(tripID)
+    console.log(tripIDFactory.tripID)
+
+
+
+
+
+
+    ViewTrip.getTrip(tripIDFactory.tripID)
      .then(function(resp) {
       //["command", "rowCount", "oid", "rows", "fields", "_parsers", "rowAsArray"]
       console.log(resp.data[0]);
@@ -63,16 +78,16 @@ angular.module('ridehook.tripview', [])
 
 
 
-       userID = $scope.trip.userID
+       userID = $scope.trip.user_id;
      })
-     // .catch(function(error) {
-     //  console.log(error + tripID + ' this trip did not load.');
-     // })
-     // .then(function(userID) {
-     //   ViewTrip.getUser(userID)
-     //    .then(function() {
-     //      $scope.user = data;
-     //    })
+       .catch(function(error) {
+         console.log(error + tripID + ' this trip did not load.');
+     })
+       .then(function() {
+        ViewTrip.getUser(userID)
+         .then(function() {
+           $scope.user = data;
+         })
      //    .catch(function(error) {
      //     console.log(error);
      //    })
@@ -95,7 +110,9 @@ angular.module('ridehook.tripview', [])
      //       })
      //     })
      // })
-  };
+  });
+};
+
 
 
   $scope.makeProposal = function() {
@@ -131,8 +148,8 @@ angular.module('ridehook.tripview', [])
 
   var getUser = function(userID) {
     return $http({
-      method: 'GET',
-      url: '/api/user/view_trip',
+      method: 'POST',
+      url: '/api/user',
       data: userID
     })
     .then(function(resp) {
