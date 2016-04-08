@@ -50,7 +50,7 @@ function newUser(data, req, res, client) {
         client.end();
         return res.status(202).send("User either already exists or the username and/or password have not been entered!");
       } else {
-        var query = client.query("INSERT INTO users(username, password, first_name, last_name, email, age, profile_pic, city, state, zip_code) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)", dataInputs);
+        var query = client.query("INSERT INTO users(username, password, first_name, last_name, email, birth_date, profile_pic, city, state, zip_code) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)", dataInputs);
 
         query.on('end', function() {
           client.end();
