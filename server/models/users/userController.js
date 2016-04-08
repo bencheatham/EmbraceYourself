@@ -44,9 +44,9 @@ function newUser(data, req, res, client) {
 
     client.query("SELECT * FROM users WHERE username = $1", [data.username], function(err, result) {
       if(err) throw err;
-      if (result.rows.length > 0) {
+      if (result.rows.length > 0 || !data.username || !data.password) {
         client.end();
-        return res.status(202).send("User already exists!");
+        return res.status(202).send("User either already exists or the username and/or password are not entered!");
       } else {
         var query = client.query("INSERT INTO users(username, password, first_name, last_name, email, age, profile_pic, city, state, zip_code) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)", dataInputs);
 
