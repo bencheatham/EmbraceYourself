@@ -45,7 +45,6 @@ function getTrip(req, res) {
 
     var tripID = req.body.tripID;
 
-    console.log(tripID)
     var query = client.query("SELECT * FROM trips WHERE id = $1", [tripID]);
 
     var foundTrip = [];

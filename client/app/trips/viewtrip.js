@@ -60,33 +60,50 @@ angular.module('ridehook.tripview', [])
 
     ViewTrip.getTrip(tripIDFactory.tripID)
      .then(function(resp) {
+      console.log('AAAAAAAAA')
+
       //["command", "rowCount", "oid", "rows", "fields", "_parsers", "rowAsArray"]
-      console.log(resp.data[0]);
        $scope.trip = resp.data[0];
+       console.log($scope.trip)
 
 
-       $scope.trip.arrival_date = resp.data[0].arrival_date;
-       $scope.trip.arrival_time = resp.data[0].arrival_time;
-       $scope.trip.depart_date = resp.data[0].depart_date;
-       $scope.trip.depart_time = resp.data[0].depart_time;
-       $scope.trip.description = resp.data[0].description;
-       $scope.trip.dropoff_point = resp.data[0].dropoff_point;
-       $scope.trip.pickup_point = resp.data[0].pickup_point;
-       $scope.trip.seats = resp.data[0].seats;
-       $scope.trip.user_id = resp.data[0].user_id;
-       $scope.trip.id = resp.data[0].id;
+       // $scope.trip.arrival_date = resp.data[0].arrival_date;
+       // $scope.trip.arrival_time = resp.data[0].arrival_time;
+       // $scope.trip.depart_date = resp.data[0].depart_date;
+       // $scope.trip.depart_time = resp.data[0].depart_time;
+       // $scope.trip.description = resp.data[0].description;
+       // $scope.trip.dropoff_point = resp.data[0].dropoff_point;
+       // $scope.trip.pickup_point = resp.data[0].pickup_point;
+       // $scope.trip.seats = resp.data[0].seats;
+       // $scope.trip.user_id = resp.data[0].user_id;
+       // $scope.trip.id = resp.data[0].id;
+
+
+
 
 
 
        userID = $scope.trip.user_id;
+       console.log(userID)
      })
        .catch(function(error) {
          console.log(error + tripID + ' this trip did not load.');
      })
        .then(function() {
         ViewTrip.getUser(userID)
-         .then(function() {
-           $scope.user = data;
+         .then(function(resp) {
+           $scope.user = resp.data[0];
+                 console.log("user user user");
+
+           console.log($scope.user)
+
+
+
+
+
+
+
+
          })
      //    .catch(function(error) {
      //     console.log(error);
@@ -147,12 +164,16 @@ angular.module('ridehook.tripview', [])
 
 
   var getUser = function(userID) {
+    var data = {};
+    data.userID = userID; 
+    console.log(data.userID)
     return $http({
       method: 'POST',
-      url: '/api/user',
-      data: userID
+      url: '/api/user/get_user',
+      data: data
     })
     .then(function(resp) {
+    //  console.log(resp)
       return resp;
     });
   };
