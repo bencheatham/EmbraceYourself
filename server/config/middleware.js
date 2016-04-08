@@ -8,6 +8,7 @@ module.exports = function (app, express) {
   var tripRouter = express.Router();
   var reviewRouter = express.Router();
   var userRouter = express.Router();
+  var riderRouter = express.Router();
 
   app.use(morgan('dev'));
   app.use(bodyParser.urlencoded({extended: true}));
@@ -15,13 +16,11 @@ module.exports = function (app, express) {
   app.use(express.static(__dirname + '/../../client'));
 
 
-  app.use('/api/trips', tripRouter); // use user router for all user request
-
-  // authentication middleware used to decode token and made available on the request
-  //app.use('/api/trips', helpers.decode);
-  app.use('/api/reviews', reviewRouter); // user review router for review request
-  console.log('herehewerewrewrwerewrwe')
+  app.use('/api/trips', tripRouter); 
+  app.use('/api/reviews', reviewRouter); 
   app.use('/api/user', userRouter);
+  app.use('/api/rider', riderRouter);
+
   app.use(helpers.errorLogger);
   app.use(helpers.errorHandler);
 
