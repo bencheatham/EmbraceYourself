@@ -21,7 +21,7 @@ body {
 	text-align: center;
 }
 #signupTab{
-	height:250px;
+	height:300px;
 }
 
 /*test */
@@ -54,6 +54,28 @@ body {
 	top: 75.5%;
 	left: 50%;
 	transform: translate(-50%, 0%);
+
+}
+
+
+/*Profile Page Styles */
+#verifiedcolumnleft{
+	color: green;
+	font-weight: bold;
+	padding-left: 40px;
+	display: inline-block;
+
+}
+
+#rightcolumn{
+		padding-left: 40px;
+			display: block;
+			clear: left;
+			float: right;
+			padding-right: 600px;
+
+
+
 
 }
 
