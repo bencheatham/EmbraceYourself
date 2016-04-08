@@ -178,6 +178,7 @@ angular.module('ridehook', [
             }).then(function(response) {
                 console.log(response.data);
                 $mdDialog.hide(information);
+                $scope.loginUser(information);
             }, function(error) {
                 console.log(error);
             });
