@@ -24,15 +24,16 @@ angular.module('ridehook.profile', [])
 		}
 		return $http({
 			method: 'POST',
-			url: '/data/users/profile'	
+			url: '/data/users/profile',
+			data: information
 		})
 		.then(function(res){
 			console.log("cat")
-			console.log(resp.body)
+			console.log(res.data)
 		});
 	};
 
-	if ($window.sessionStorage){
+	if ($window.sessionStorage.id){
 		$scope.getUserDisplay();
 	}
 });
