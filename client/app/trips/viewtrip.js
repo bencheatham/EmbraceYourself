@@ -1,6 +1,6 @@
 angular.module('ridehook.tripview', [])
 
-.controller('ViewTripController', function($scope, $window, ViewTrip, tripIDFactory, Riders) {
+.controller('ViewTripController', function($scope, $window, $route, ViewTrip, tripIDFactory, Riders) {
 
 
    $scope.trip = {};
@@ -22,9 +22,12 @@ angular.module('ridehook.tripview', [])
   var userID = $window.sessionStorage.id;
   var tripID = tripIDFactory.tripID ? tripIDFactory.tripID : 1;
   var riders = []; //array to hold current trip riders
+  var num_seats = 0;
   $scope.isRider = false;
   $scope.tripFull = false;
   $scope.button = "Confirm Seat";
+
+
 
   $scope.getTripRiders = function() {
 
@@ -35,6 +38,7 @@ angular.module('ridehook.tripview', [])
 
   $scope.isUserRider = function(riders) {
 
+    $scope.isRider = false;
     console.log('riders is:  ')
     console.log(riders.data)
 
@@ -49,14 +53,27 @@ angular.module('ridehook.tripview', [])
       }
     });
 
+    
   }
 
-  $scope.makeUserButton = function() {
+  $scope.changeRiderSeatStatus = function() {
+
+    Riders.getTripRiders(tripID)
+    .then(function(resp) {
+      var num_riders = resp.data.length;
+      ViewTrip.calcSeatsLeft(num_riders, num_seats);
+      $scope.trip.seats = ViewTrip.getSeatsLeft();
+            $scope.isUserRider(resp);
 
 
+    })
+  }
+
+  $scope.updateSeatsAvailable = function() {
 
 
   }
+
 
 
   $scope.getThisTrip = function() {
@@ -70,23 +87,25 @@ angular.module('ridehook.tripview', [])
        $scope.trip.seat_price = 35;
        $scope.user.profile_pic = "../../assets/profile_pics/126717412.jpg";
 
-       var num_seats = resp.data[0].seats
+       num_seats = resp.data[0].seats
 
-       Riders.getTripRiders(tripID) //gets # of riders to calculate remaining seats
+       $scope.changeRiderSeatStatus();
 
-       .then(function(resp) {
+       // Riders.getTripRiders(tripID) //gets # of riders to calculate remaining seats
 
-        var num_riders = resp.data.length;
-        ViewTrip.calcSeatsLeft(num_riders, num_seats);
-        $scope.trip.seats = ViewTrip.getSeatsLeft();
+       // .then(function(resp) {
 
-
-
-
+       //  var num_riders = resp.data.length;
+       //  ViewTrip.calcSeatsLeft(num_riders, num_seats);
+       //  $scope.trip.seats = ViewTrip.getSeatsLeft();
 
 
 
-       })
+
+
+
+
+       // })
      })
      .catch(function(error) {
          console.log(error + tripID + ' this trip did not load.');
@@ -127,6 +146,8 @@ angular.module('ridehook.tripview', [])
 
 
 
+
+
   $scope.takeSeat = function() {
 
     var data = {
@@ -142,10 +163,15 @@ angular.module('ridehook.tripview', [])
 
     Riders.addRider(data)
     .then(function() {
-      Riders.getTripRiders(tripID)
-      .then(function(resp) {
-        console.log(resp.data)
-      })
+      $scope.changeRiderSeatStatus();  
+    })
+  }
+
+  $scope.cancelSeat = function() {
+
+    Riders.deleteRider(userID, tripID)
+    .then(function() {
+      $scope.changeRiderSeatStatus();
     })
   }
 
@@ -153,12 +179,10 @@ angular.module('ridehook.tripview', [])
 
 
 
-  $scope.getThisTrip();
 
-  $scope.getTripRiders()
-  .then(function(riders){
-    $scope.isUserRider(riders);
-  });
+
+  $scope.getThisTrip();
+  $scope.changeRiderSeatStatus();
 
    
 
@@ -271,9 +295,29 @@ angular.module('ridehook.tripview', [])
     })
   }
 
+
+  var deleteRider = function(userID, tripID) {
+
+    var data = {};
+    data.userID = userID;
+    data.tripID = tripID;
+
+    return $http({
+      method: 'POST',
+      url: '/api/rider/delete_rider',
+      data: data
+    })
+
+
+  }
+
+
+
+
   return {
     addRider: addRider,
-    getTripRiders: getTripRiders
+    getTripRiders: getTripRiders,
+    deleteRider: deleteRider
   }
 
 });

@@ -89,7 +89,30 @@ module.exports = {
       });
 
     });
+  },
 
+  deleteRider: function(req, res, next) {
+
+    var client = helper.createClient();
+
+    client.connect(function(err) {
+      if(err) {
+        console.log('rider deletion connection failed!');
+        return res.status(500).json({ success: false, data: err});
+      }
+
+      var data = [
+        req.body.tripID,
+        req.body.userID
+      ]
+
+      var query = client.query("DELETE FROM riders WHERE trip_id = $1 AND user_id = $2", data);
+
+      query.on('end', function() {
+        client.end();
+        console.log('rider has been deleted');
+      });
+    });
 
   }
 

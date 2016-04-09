@@ -67,7 +67,7 @@
 
 
 
-    <input class="btn btn-lg btn-riding" type="button" value="Confirm Seat" ng-click="takeSeat()">
+    <input ng-class="{'btn btn-lg btn-cancel-ride': isRider, 'btn-hide': !isRider}" type="button" value="Cancel Seat" ng-click="cancelSeat()">
 
 
 

@@ -114,6 +114,7 @@ li .detail {
 
 .btn-lg,
 .btn-group-lg > .btn {
+  width: 150px;
   padding: 10px 16px;
   font-size: 18px;
   line-height: 1.3333333;
@@ -228,4 +229,69 @@ fieldset[disabled] .btn-riding.focus {
   background-color: #337ab7;
   border-color: #2e6da4;
 }
+
+
+
+
+
+
+.btn-cancel-ride {
+  color: #fff;
+  background-color: #C94612;
+  border-color: #2e6da4;
+}
+.btn-cancel-ride:focus,
+.btn-cancel-ride.focus {
+  color: #fff;
+  background-color: #286090;
+  border-color: #122b40;
+}
+.btn-cancel-ride:hover {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+.btn-cancel-ride:active,
+.btn-cancel-ride.active,
+.open > .dropdown-toggle.btn-cancel-ride {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+.btn-cancel-ride:active:hover,
+.btn-cancel-ride.active:hover,
+.open > .dropdown-toggle.btn-cancel-ride:hover,
+.btn-cancel-ride:active:focus,
+.btn-cancel-ride.active:focus,
+.open > .dropdown-toggle.btn-cancel-ride:focus,
+.btn-cancel-ride:active.focus,
+.btn-cancel-ride.active.focus,
+.open > .dropdown-toggle.btn-cancel-ride.focus {
+  color: #fff;
+  background-color: #204d74;
+  border-color: #122b40;
+}
+.btn-cancel-ride:active,
+.btn-cancel-ride.active,
+.open > .dropdown-toggle.btn-cancel-ride {
+  background-image: none;
+}
+.btn-cancel-ride.disabled:hover,
+.btn-cancel-ride[disabled]:hover,
+fieldset[disabled] .btn-cancel-ride:hover,
+.btn-cancel-ride.disabled:focus,
+.btn-cancel-ride[disabled]:focus,
+fieldset[disabled] .btn-cancel-ride:focus,
+.btn-cancel-ride.disabled.focus,
+.btn-cancel-ride[disabled].focus,
+fieldset[disabled] .btn-cancel-ride.focus {
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+
+
+.btn-hide {
+ display: none;
+}
+
 
