@@ -59,7 +59,10 @@
     <p class="price-and-seats"> ${{trip.seat_price}} | {{trip.seats}} Seats left</p>
 
     <p class="confirm-seat-message">Click to book your seat:</p>
-    <input class="btn btn-lg btn-primary" type="button" value="Confirm Seat" ng-click="confirmSeat()">
+    
+    <button ng-class="{'btn btn-lg btn-not-riding': !isRider, 'btn btn-lg btn-riding': isRider}" type="button" ng-click="takeSeat()">{{button}}</button>
+
+    <input class="btn btn-lg btn-riding" type="button" value="Confirm Seat" ng-click="takeSeat()">
 
 
 
@@ -67,7 +70,7 @@
 
   <div id="container" class="driver-side-bar">
 
-  
+
 
   </div>
 
