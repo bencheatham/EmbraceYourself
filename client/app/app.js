@@ -121,7 +121,8 @@ angular.module('ridehook', [
 })
 .factory('tripIDFactory', function () {
     var tObj = {
-        tripID: null
+        tripID: null,
+        tripResult: null // trip result that is in the form of JSON
     }
     return tObj;
 })
