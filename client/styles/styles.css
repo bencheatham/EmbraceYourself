@@ -24,8 +24,7 @@ body {
 	height:300px;
 }
 
-/*test */
-/*home below */
+/* home view styles */
 
 #home-main {
     width: 100%;
@@ -71,7 +70,7 @@ body {
 		padding-left: 40px;
 		display:inline-block;
 		padding-left: 100px;
-		float: center;	
+		float: center;
 		padding-right: 40px;
 }
 
@@ -92,7 +91,7 @@ body {
 }
 
 
-/* Trip View Styles */
+/* create a trip view styles */
 
 #tripForm {
 	width: 600px;
@@ -108,6 +107,15 @@ body {
 #input-pickup-location {
 	width: 200px;
 }
+
+#err_msg {
+	color: red;
+}
+
+#confirm_msg {
+	color: blue;
+}
+
 /* search view -- start */
 #search-main table, th, td {
   border: 1px solid black;
