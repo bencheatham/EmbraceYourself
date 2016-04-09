@@ -207,7 +207,7 @@ angular.module('ridehook', [
             $window.sessionStorage.fn = response.data.first_name;
             $window.sessionStorage.ln = response.data.last_name;
 
-            console.log('Success: ', response);
+            console.log('Success:', response);
             $mdDialog.hide(information);
             $window.location.reload();
 
