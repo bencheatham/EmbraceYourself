@@ -27,18 +27,20 @@
 		</div >
 		<div id="rightcolumn">
 			<h1>Hey, I'm {{firstname}}</h1>
-			<p>City, State<p>
-			<p>age</p>
-			<p>avg review</p>
+			<p>{{city}}, {{state}}<p>
+			<p>4.8 Stars</p>
 			<br></br>
-			<br></br>
+			<p id="bioparagraph">{{biography}}</p>
 			<form>
-				<input placeholder="Tell your riders about yourself!"></input>
-				<button ng-click="getUserDisplay()">Submit Bio</button>
+				<textarea id="textbox" ng-model="biography" placeholder="Tell your riders about yourself!"></textarea>
+				<br></br>
+				<md-button  ng-click="postBio(biography)">Submit Bio</md-button>
 			</form>
+
+
 		</div>
 		<div id="reviewsbelowrightcolumn">
-			<p> pull in reviews</p>
+	
 		</div>
 		<br></br>
 		<br></br>
