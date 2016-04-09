@@ -2,14 +2,17 @@
 angular.module('ridehook.profile', [])
 
 .controller('ProfileController', function ($scope, $window, $location, $http) {
+
+	$scope.loggedIn = $window.sessionStorage.id;
+
 	if ($window.sessionStorage.id){
 	$scope.firstname = $window.sessionStorage.fn;
 	//is there a biography?
 	//if yes. populate
 	//if no, empty string
-	
 
-}
+
+	}
 
 	$scope.pullProfileData = function(){
 
@@ -27,18 +30,19 @@ angular.module('ridehook.profile', [])
 	};
 
 	$scope.postBio = function(biography){
-		
-		var information = {biography: biography, id: $window.sessionStorage.id};
-		
-		return $http({
-			method: 'POST',
-			url: 'data/users/profile',
-			data: information
-		})
-		.then(function(resp){
-		 	console.log(resp.data);
-			// return resp.data;
-		});
+		if ($window.sessionStorage.id) {
+			var information = {biography: biography, id: $window.sessionStorage.id};
+
+			return $http({
+				method: 'POST',
+				url: 'data/users/profile',
+				data: information
+			})
+			.then(function(resp){
+			 	console.log(resp.data);
+				// return resp.data;
+			});
+		}
 	}
 
 	$scope.pullProfileData();
@@ -63,8 +67,8 @@ angular.module('ridehook.profile', [])
 
 
 	$scope.getUserDisplay = function(data, req, res, client){
-		
-		information = {
+
+		var information = {
 			biography: $scope.biography,
 			id : $window.sessionStorage.id
 		}
