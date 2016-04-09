@@ -23,6 +23,7 @@ angular.module('ridehook.tripview', [])
   var tripID = tripIDFactory.tripID ? tripIDFactory.tripID : 1;
   var riders = []; //array to hold current trip riders
   $scope.isRider = false;
+  $scope.tripFull = false;
   $scope.button = "Confirm Seat";
 
   $scope.getTripRiders = function() {
@@ -32,12 +33,19 @@ angular.module('ridehook.tripview', [])
 
   }
 
-  $scope.isUserRider = function() {
+  $scope.isUserRider = function(riders) {
 
-    riders.forEach(function(rider) {
-      if(rider.user_id === userID) {
-        isRider = true;
-        $scope.button = "You're In!";
+    console.log('riders is:  ')
+    console.log(riders.data)
+
+    riders.data.forEach(function(rider) {
+      console.log('userID: ' + userID)
+      console.log('rider.user_id: ' + rider.user_id)
+      console.log(parseInt(rider.user_id) === parseInt(userID))
+      if(parseInt(rider.user_id) === parseInt(userID)) {
+        $scope.isRider = true;
+        $scope.button = "  You're In!  ";
+        console.log('YOU ARE A RIDER!')
       }
     });
 
@@ -149,9 +157,8 @@ angular.module('ridehook.tripview', [])
 
   $scope.getTripRiders()
   .then(function(riders){
-    console.log(riders)
-  })
-  //$scope.isUserRider()
+    $scope.isUserRider(riders);
+  });
 
    
 
