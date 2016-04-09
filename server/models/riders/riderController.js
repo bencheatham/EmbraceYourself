@@ -110,7 +110,7 @@ module.exports = {
 
       query.on('end', function() {
         client.end();
-        console.log('rider has been deleted');
+        res.status(201).send("Rider has been deleted");
       });
     });
 
