@@ -19,9 +19,9 @@ angular.module('ridehook.search', [])
     $window.sessionStorage.tripID = id;
     $window.sessionStorage.currentTrip = result;
 
-    console.log("tripID: ", tripIDFactory.tripID);
-    console.log("tripResult: ", tripIDFactory.tripResult);
+    // console.log("tripID: ", tripIDFactory.tripID);
+    // console.log("tripResult: ", tripIDFactory.tripResult);
     $location.url('/viewtrip');
   }
-  console.log("$scope.results: ", $scope.results);
+  // console.log("$scope.results: ", $scope.results);
 });
