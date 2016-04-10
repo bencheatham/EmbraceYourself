@@ -16,7 +16,9 @@ angular.module('ridehook.search', [])
     // stores the id in the tripID factory for ben's /viewtrip
     tripIDFactory.tripID = id;
     tripIDFactory.tripResult = result;
-    // console.log("tripResult: ", tripIDFactory.tripResult);
+    console.log("tripID: ", tripIDFactory.tripID);
+    console.log("tripResult: ", tripIDFactory.tripResult);
     $location.url('/viewtrip');
   }
+  console.log("$scope.results: ", $scope.results);
 });
