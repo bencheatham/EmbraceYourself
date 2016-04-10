@@ -117,13 +117,13 @@ body {
 }
 
 /* search view -- start */
-#search-main table, th, td {
+/*#search-main table, th, td {
   border: 1px solid black;
 }
 
 #search-main td {
     width: 10%;
-}
+}*/
 
 /*#searchcontainer {
   border: 1px solid blue;

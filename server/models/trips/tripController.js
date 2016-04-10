@@ -114,7 +114,7 @@ function findTrip(data, req, res, client) {
     // var query = client.query("SELECT * FROM trips LEFT JOIN users ON trips.user_id = users.id WHERE pickup_point = $1 AND dropoff_point = $2 AND depart_date = $3", dataInputs);
 
     // bugfix where you have TWO fields of id (from both trips and users)
-    var query = client.query("SELECT trips.*, users.first_name, users.last_name FROM trips LEFT JOIN users ON trips.user_id = users.id WHERE pickup_point = $1 AND dropoff_point = $2 AND depart_date = $3", dataInputs);
+    var query = client.query("SELECT trips.*, users.first_name, users.last_name, users.profile_pic FROM trips LEFT JOIN users ON trips.user_id = users.id WHERE pickup_point = $1 AND dropoff_point = $2 AND depart_date = $3", dataInputs);
 
     query.on('row', function(row) {
       results.push(row);
