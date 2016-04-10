@@ -8,17 +8,22 @@ angular.module('ridehook.tripview', [])
 
 
   //define global variables for trip view controller
+  var trip = tripIDFactory.tripResult;
   var userID = $window.sessionStorage.id;
   var tripID = tripIDFactory.tripID ? tripIDFactory.tripID : 1;
   var tripUserID = null;
   var riders = []; //array to hold current trip riders
   var num_seats = 0;
+  var alreadyReloaded = false;
   $scope.isRider = false;
   $scope.tripFull = false;
   $scope.button = "Confirm Seat";
 
 
+  console.log('tripID is: ' + tripID);
 
+  console.log('trip info is: ')
+  console.log(trip)
   $scope.getTripRiders = function() {
 
     riders = Riders.getTripRiders(tripID);
@@ -56,9 +61,13 @@ angular.module('ridehook.tripview', [])
 
 
   $scope.getThisTrip = function() {
-    
+    console.log('Starting....')
+
     ViewTrip.getTrip(tripID)
      .then(function(resp) {
+
+       console.log('what trip query got')
+       console.log(resp.data[0])
 
        tripUserID = resp.data[0].user_id;
 
@@ -69,17 +78,22 @@ angular.module('ridehook.tripview', [])
        $scope.user.profile_pic = "../../assets/profile_pics/126717412.jpg";
 
        num_seats = resp.data[0].seats
+       console.log('about to get user....')
 
        $scope.changeRiderSeatStatus();
 
      })
-     .catch(function(error) {
+     /*.catch(function(error) {
          console.log(error + tripID + ' this trip did not load.');
-     }).then(function() {
+     })*/.then(function() {
       
        ViewTrip.getUser(tripUserID).then(function(resp) {
          $scope.user = resp.data[0];
-     })
+       }).then(function() {
+        console.log('lets reload')
+        $scope.runReload();
+
+       })
      //    .catch(function(error) {
      //     console.log(error);
      //    })
@@ -138,7 +152,6 @@ angular.module('ridehook.tripview', [])
 
     Riders.deleteRider(userID, tripID)
     .then(function(resp) {
-          console.log('HERE WE AREEEEEE')
 
       $scope.changeRiderSeatStatus();
     })
@@ -149,14 +162,28 @@ angular.module('ridehook.tripview', [])
   }
 
 
+  $scope.runReload = function() {
+    
+    //var alreadyReloaded = false;
 
+    return function() {
+      if(!alreadyReloaded) {
+          console.log('before')
+          console.log(alreadyReloaded);
+          alreadyReloaded = true;
+          $route.reload();
+      }
+    }
+
+
+  }
 
 
 
 
   $scope.getThisTrip();
   $scope.changeRiderSeatStatus();
-
+  //$scope.runReload();
    
 
 
@@ -172,7 +199,6 @@ angular.module('ridehook.tripview', [])
 
     var data = {};
     data.tripID = tripID; 
-    console.log(data)
 
     return $http({
       method: 'POST',
@@ -188,7 +214,6 @@ angular.module('ridehook.tripview', [])
   var getUser = function(userID) {
     var data = {};
     data.userID = userID; 
-    console.log(data.userID)
     return $http({
       method: 'POST',
       url: '/api/user/get_user',
