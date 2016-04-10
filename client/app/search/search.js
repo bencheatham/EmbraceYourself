@@ -2,7 +2,7 @@
 
 angular.module('ridehook.search', [])
 
-.controller('SearchController', function ($scope, $location, searchResults, tripIDFactory){
+.controller('SearchController', function ($scope, $location, $window, searchResults, tripIDFactory){
 
   $scope.results = searchResults.results;
 
@@ -16,6 +16,9 @@ angular.module('ridehook.search', [])
     // stores the id in the tripID factory for ben's /viewtrip
     tripIDFactory.tripID = id;
     tripIDFactory.tripResult = result;
+    $window.sessionStorage.tripID = id;
+    $window.sessionStorage.currentTrip = result;
+
     console.log("tripID: ", tripIDFactory.tripID);
     console.log("tripResult: ", tripIDFactory.tripResult);
     $location.url('/viewtrip');

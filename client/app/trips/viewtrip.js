@@ -1,6 +1,6 @@
 angular.module('ridehook.tripview', [])
 
-.controller('ViewTripController', function($scope, $window, $route, ViewTrip, tripIDFactory, Riders) {
+.controller('ViewTripController', function($scope, $window, $route, ViewTrip, tripIDFactory, Riders, authenticate) {
 
 
    $scope.trip = {};
@@ -8,17 +8,28 @@ angular.module('ridehook.tripview', [])
 
 
   //define global variables for trip view controller
+  var trip = $window.sessionStorage.currentTrip; //tripIDFactory.tripResult;
+ 
+
   var userID = $window.sessionStorage.id;
-  var tripID = tripIDFactory.tripID ? tripIDFactory.tripID : 1;
+  var tripID = $window.sessionStorage.tripID; //tripIDFactory.tripID;
+
+
   var tripUserID = null;
   var riders = []; //array to hold current trip riders
   var num_seats = 0;
+  var alreadyReloaded = false;
   $scope.isRider = false;
   $scope.tripFull = false;
   $scope.button = "Confirm Seat";
+  $scope.loggedIn = true;
 
 
 
+  console.log('tripID is: ' + tripID);
+
+  console.log('trip info is: ')
+  console.log(trip)
   $scope.getTripRiders = function() {
 
     riders = Riders.getTripRiders(tripID);
@@ -56,9 +67,13 @@ angular.module('ridehook.tripview', [])
 
 
   $scope.getThisTrip = function() {
-    
+    console.log('Starting....')
+
     ViewTrip.getTrip(tripID)
      .then(function(resp) {
+
+       console.log('what trip query got')
+       console.log(resp.data[0])
 
        tripUserID = resp.data[0].user_id;
 
@@ -69,17 +84,18 @@ angular.module('ridehook.tripview', [])
        $scope.user.profile_pic = "../../assets/profile_pics/126717412.jpg";
 
        num_seats = resp.data[0].seats
+       console.log('about to get user....')
 
        $scope.changeRiderSeatStatus();
 
-     })
-     .catch(function(error) {
-         console.log(error + tripID + ' this trip did not load.');
-     }).then(function() {
-      
+     }).then(function() {    
        ViewTrip.getUser(tripUserID).then(function(resp) {
          $scope.user = resp.data[0];
-     })
+       }).then(function() {
+        console.log('lets reload now')
+        ViewTrip.runReload(console.log('inhere!!!'));
+        console.log('did it work?')
+       })
      //    .catch(function(error) {
      //     console.log(error);
      //    })
@@ -114,6 +130,14 @@ angular.module('ridehook.tripview', [])
 
   $scope.takeSeat = function() {
 
+    if(!authenticate.loginCheck()){
+      $scope.loggedIn = authenticate.loginCheck();
+      return;
+    }
+
+
+
+
     var data = {
       trip_id: tripID,
       user_id: userID,
@@ -136,9 +160,13 @@ angular.module('ridehook.tripview', [])
 
   $scope.cancelSeat = function() {
 
+    if(!authenticate.loginCheck()){
+      $scope.loggedIn = authenticate.loginCheck();
+      return;
+    }
+
     Riders.deleteRider(userID, tripID)
     .then(function(resp) {
-          console.log('HERE WE AREEEEEE')
 
       $scope.changeRiderSeatStatus();
     })
@@ -156,23 +184,42 @@ angular.module('ridehook.tripview', [])
 
   $scope.getThisTrip();
   $scope.changeRiderSeatStatus();
-
+  //$scope.runReload();
    
 
 
 
 
 })
-.factory('ViewTrip', function($http) { 
+.factory('ViewTrip', function($http, $route) { 
 
   var seats_left = 0;
+  var alreadyReloaded = false;
+
+
+  var runReload = function() {
+    
+
+    console.log('about to reload in the reload')
+    console.log('return me please!!!')
+
+    if(!alreadyReloaded) {
+        console.log('before')
+        console.log(alreadyReloaded);
+        alreadyReloaded = true;
+        $route.reload();
+    }
+
+
+  }
+
+
 
 
   var getTrip = function(tripID) {
 
     var data = {};
     data.tripID = tripID; 
-    console.log(data)
 
     return $http({
       method: 'POST',
@@ -188,7 +235,6 @@ angular.module('ridehook.tripview', [])
   var getUser = function(userID) {
     var data = {};
     data.userID = userID; 
-    console.log(data.userID)
     return $http({
       method: 'POST',
       url: '/api/user/get_user',
@@ -239,7 +285,8 @@ angular.module('ridehook.tripview', [])
    getReviews: getReviews,
    getMessages: getMessages,
    calcSeatsLeft: calcSeatsLeft,
-   getSeatsLeft: getSeatsLeft
+   getSeatsLeft: getSeatsLeft,
+   runReload: runReload
   }
 })
 
