@@ -8,9 +8,13 @@ angular.module('ridehook.tripview', [])
 
 
   //define global variables for trip view controller
-  var trip = tripIDFactory.tripResult;
+  var trip = $window.sessionStorage.currentTrip; //tripIDFactory.tripResult;
+ 
+
   var userID = $window.sessionStorage.id;
-  var tripID = tripIDFactory.tripID ? tripIDFactory.tripID : 1;
+  var tripID = $window.sessionStorage.tripID; //tripIDFactory.tripID;
+
+
   var tripUserID = null;
   var riders = []; //array to hold current trip riders
   var num_seats = 0;
