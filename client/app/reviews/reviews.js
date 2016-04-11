@@ -8,14 +8,15 @@ angular.module('ridehook.reviews', [])
 
   //Make some dummy content for test / dev purposes.
   //this should actually get assigned @ user sign-in/prompt
-  $window.sessionStorage.needs_review_username = 'hey';
-  $window.sessionStorage.needs_user_review_trip_id = 3;
-  $window.sessionStorage.needs_review_user_id = 1;
+  // $window.sessionStorage.needs_review_username = 'hey';
+  // $window.sessionStorage.needs_user_review_trip_id = 3;
+  // $window.sessionStorage.needs_review_user_id = 1;
 
   var reviewing_user_id = $window.sessionStorage.id;
   var needs_reviewed_username = $window.sessionStorage.needs_review_username;
   var tripID = $window.sessionStorage.needs_user_review_trip_id; //tripIDFactory.tripID;
-  var reviewed_user_id = $window.sessionStorage.needs_review_user_id;
+  // var reviewed_user_id = $window.sessionStorage.needs_review_user_id;
+  var reviewed_user_id = $window.sessionStorage.needs_user_review_driver_id;
 
   $scope.message = 'Leave a Review for ' + needs_reviewed_username + '!';
 
@@ -49,7 +50,7 @@ angular.module('ridehook.reviews', [])
       });
 
 
-  }; 
+  };
 
 //function to check to see if needs_review_user_id exists.
 //if it exists, redirect to addreview.html
@@ -90,5 +91,5 @@ angular.module('ridehook.reviews', [])
   }
 
 
- 
+
 })

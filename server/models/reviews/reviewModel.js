@@ -15,7 +15,7 @@ var reviewTable = function () {
       reviewed_userID INT, \
       reviewing_userID INT, \
       review_stars INT, \
-      review VARCHAR(255), \
+      review TEXT, \
       created_on VARCHAR(255), \
       modified_on VARCHAR(255) \
       )');
@@ -29,4 +29,3 @@ var reviewTable = function () {
 module.exports = {
   reviewTable: reviewTable
 };
-
