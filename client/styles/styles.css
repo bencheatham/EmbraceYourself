@@ -203,10 +203,8 @@ body {
 #map {
 	border: 1px solid black;
 	height: 300px;
-	width: 50%;
-	margin: 15px 45px;
-	display: inline-block;
-	float: right;
+	width: 75%;
+	margin: 0 auto;
 }
 /*#floating-panel {
 	position: absolute;
