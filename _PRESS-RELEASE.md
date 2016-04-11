@@ -38,14 +38,16 @@ Once the project moves into development, the press release can be used as a touc
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
-
+  "Getting a ride with Ride On is quick and painless! It's 3 easy steps to claim a seat and the convenient message system let's riders keep in touch with the driver hosting the ride!"
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
-  Getting started is easy: try searching for a ride from the home page!  Signup & signin links are conveniently located in upper right corner of every page.
+  Getting started is easy: try searching for a ride from the home page! Signup & signin links are conveniently located in upper right corner of every page.
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  "Ride On is awesome! It's taken all the stress away from my daily commute.  I've shared rides with many interesting people and even made new friends.  Thanks, Ride On!"
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
+  Let Ride On take you where you need to go today and change the way you travel.
