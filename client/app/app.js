@@ -263,7 +263,7 @@ angular.module('ridehook', [
             $window.sessionStorage.needs_user_review_trip_id = response.data.needs_user_review_trip_id;
             $window.sessionStorage.needs_review_user_id = response.data.needs_review_user_id;
 
-            if ($window.sessionStorage.needs_user_review_trip_id != null){
+            if (response.data !== "User reviews are up-to-date."){
                 $location.url('/addreview')
             }
             

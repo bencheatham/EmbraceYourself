@@ -89,8 +89,8 @@ module.exports = {
 
   },
 
-  checkReviewStatusOnLogin: function(reqbody, req, res, next) {
-
+  checkReviewStatusOnLogin: function(data, req, res, next) {
+    console.log("data:", data)
     var client = helper.createClient();
 
     client.connect(function(err){
@@ -99,7 +99,7 @@ module.exports = {
         return res.status(500).json({success: false, data: err});
       }
 
-      var query =  client.query("SELECT users.id, users.username, riders.trip_id FROM users LEFT JOIN riders on users.id = riders.user_id LEFT JOIN reviews on users.id = reviews.reviewing_userid WHERE CAST(riders.trip_end_date AS date) < current_date AND riders.trip_end_date is not null AND reviews.review is null;", function(err, result){
+      var query = client.query("SELECT users.id, users.username, riders.trip_id FROM users LEFT JOIN riders on users.id = riders.user_id LEFT JOIN reviews on users.id = reviews.reviewing_userid WHERE CAST(riders.trip_end_date AS date) < current_date AND riders.trip_end_date is not null AND reviews.review is null AND users.username =$1 AND users.password = $2;", [data.username, data.password], function(err, result){
          console.log(result);
           if(err) {
             throw err;
