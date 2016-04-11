@@ -80,7 +80,8 @@ app.post('/data/users/login', function (req, res) {
               user_id: result.rows[0].id,
               username: result.rows[0].username,
               first_name: result.rows[0].first_name,
-              last_name: result.rows[0].last_name
+              last_name: result.rows[0].last_name,
+              profile_pic: result.rows[0].profile_pic
             };
 
             // We are sending the profile inside the token
@@ -91,7 +92,8 @@ app.post('/data/users/login', function (req, res) {
               user_id: profile.user_id,
               username: profile.username,
               first_name: profile.first_name,
-              last_name: profile.last_name
+              last_name: profile.last_name,
+              profile_pic: profile.profile_pic
             });
 
             client.end();
