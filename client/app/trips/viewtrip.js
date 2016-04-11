@@ -100,6 +100,9 @@ angular.module('ridehook.tripview', [])
          ViewTrip.getReviews(driver_user_id)
          .then(function(data) {
             $scope.reviews = data.data;
+            $scope.reviews.review_count = data.data.length;
+            $scope.reviews.review_avg = $scope.calcAvgReviewStars(data.data);
+
             console.log(driver_user_id + ' reviews are: '+ $scope.reviews)
             console.log($scope.reviews)
          })
@@ -126,7 +129,13 @@ angular.module('ridehook.tripview', [])
   };
 
 
-
+  $scope.calcAvgReviewStars = function(reviews) {
+    var starSum = reviews.reduce(function(accum, review) {
+      return accum + review.review_stars;
+    }, 0);
+    console.log('starSum: ' + starSum);
+    return starSum / reviews.length;
+  }
 
 
   $scope.takeSeat = function() {

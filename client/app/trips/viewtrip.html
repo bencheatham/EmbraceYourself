@@ -88,6 +88,8 @@
 
     <div id="user-review-list">
       <p>Reviews:</p>
+      <p>Review Count: {{reviews.review_count}}</p>
+      <p>Avg Review: {{reviews.review_avg}}</p>
       <ul class="reviews">
         <li ng-repeat="review in reviews" class="review-driver-side-bar">
         <p class="review-stars">Stars: {{review.review_stars}}</p>
