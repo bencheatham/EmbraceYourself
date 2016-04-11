@@ -119,11 +119,15 @@ body {
 /* search view -- start */
 /*#search-main table, th, td {
   border: 1px solid black;
-}
+}*/
 
 #search-main td {
-    width: 10%;
-}*/
+	text-align: center;
+}
+
+#search-main .description {
+	text-align: left;
+}
 
 /*#searchcontainer {
   border: 1px solid blue;

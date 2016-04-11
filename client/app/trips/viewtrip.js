@@ -10,7 +10,7 @@ angular.module('ridehook.tripview', [])
 
   //define global variables for trip view controller
   var trip = $window.sessionStorage.currentTrip; //tripIDFactory.tripResult;
- 
+
 
   var userID = $window.sessionStorage.id;
   var tripID = $window.sessionStorage.tripID; //tripIDFactory.tripID;
@@ -49,7 +49,7 @@ angular.module('ridehook.tripview', [])
       }
     });
 
-    
+
   }
 
   $scope.changeRiderSeatStatus = function() {
@@ -89,7 +89,7 @@ angular.module('ridehook.tripview', [])
 
        $scope.changeRiderSeatStatus();
 
-     }).then(function() {    
+     }).then(function() {
        ViewTrip.getUser(driver_user_id).then(function(resp) {
          $scope.user = resp.data[0];
        }).then(function() {
@@ -195,20 +195,20 @@ angular.module('ridehook.tripview', [])
   $scope.getThisTrip();
   $scope.changeRiderSeatStatus();
   //$scope.runReload();
-   
+
 
 
 
 
 })
-.factory('ViewTrip', function($http, $route) { 
+.factory('ViewTrip', function($http, $route) {
 
   var seats_left = 0;
   var alreadyReloaded = false;
 
 
   var runReload = function() {
-    
+
 
     console.log('about to reload in the reload')
     console.log('return me please!!!')
@@ -229,7 +229,7 @@ angular.module('ridehook.tripview', [])
   var getTrip = function(tripID) {
 
     var data = {};
-    data.tripID = tripID; 
+    data.tripID = tripID;
 
     return $http({
       method: 'POST',
@@ -244,7 +244,7 @@ angular.module('ridehook.tripview', [])
 
   var getUser = function(userID) {
     var data = {};
-    data.userID = userID; 
+    data.userID = userID;
     return $http({
       method: 'POST',
       url: '/api/user/get_user',
@@ -260,7 +260,7 @@ angular.module('ridehook.tripview', [])
 
     var data = {};
     data.reviewed_userid = userID;
-    
+
     return $http({
       method: 'POST',
       url: '/api/reviews/get_user_reviews',
@@ -275,7 +275,7 @@ angular.module('ridehook.tripview', [])
     return $http({
       method: 'GET',
       url: '/api/trips/trip_messages',
-      data: tripID 
+      data: tripID
     })
   }
 
@@ -318,7 +318,7 @@ angular.module('ridehook.tripview', [])
   var getTripRiders = function(tripID) {
 
     var data = {};
-    data.tripID = tripID; 
+    data.tripID = tripID;
 
     return $http({
       method: 'POST',
@@ -357,6 +357,3 @@ angular.module('ridehook.tripview', [])
   }
 
 });
-
-
-

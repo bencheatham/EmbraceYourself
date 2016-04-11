@@ -5,6 +5,7 @@ angular.module('ridehook.search', [])
 .controller('SearchController', function ($scope, $location, $window, searchResults, tripIDFactory){
 
   $scope.results = searchResults.results;
+  console.log("search results: ", $scope.results);
 
   if ($scope.results.length > 0) {
     $scope.from = $scope.results[0].pickup_point;
