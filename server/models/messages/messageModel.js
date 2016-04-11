@@ -17,7 +17,7 @@ var messageTable = function () {
       creator_display_name VARCHAR(255), \
       responds_to INT, \
       message_trip_id INT, \
-      responses VARCHAR, \
+      responses text[], \
       modified_on VARCHAR(255) \
       )');
 
