@@ -16,6 +16,8 @@ var reviewTable = function () {
       reviewing_userID INT, \
       review_stars INT, \
       review TEXT, \
+      review_trip_id INT,\
+      review VARCHAR(255), \
       created_on VARCHAR(255), \
       modified_on VARCHAR(255) \
       )');
