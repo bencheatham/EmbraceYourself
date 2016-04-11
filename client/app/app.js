@@ -249,10 +249,10 @@ angular.module('ridehook', [
 
         information = {
             username: information.username,
-            password: information.password,
+            password: information.password
         };
 
-        console.log("cat")
+        console.log("cat: ", information);
         return $http({
             method: 'POST',
             url: 'data/reviews/status',
@@ -261,12 +261,15 @@ angular.module('ridehook', [
             console.log("review response:", response.data);
             $window.sessionStorage.needs_review_username = response.data.needs_review_username;
             $window.sessionStorage.needs_user_review_trip_id = response.data.needs_user_review_trip_id;
+
+            $window.sessionStorage.needs_user_review_driver_id = response.data.needs_user_review_driver_id;
             $window.sessionStorage.needs_review_user_id = response.data.needs_review_user_id;
 
             if (response.data !== "User reviews are up-to-date."){
-                $location.url('/addreview')
+                $location.url('/addreview');
+                $window.location.reload();
             }
-            
+
         })
 
 
