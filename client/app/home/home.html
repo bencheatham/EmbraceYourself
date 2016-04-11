@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html>
-<body background="Happy_young_people_in_a_car.jpg">
+<head>
+	<style>
+		body{
+			background-image: URL("https://www.move-forward.com/fileadmin/user_upload/Happy_young_people_in_a_car.jpg");
+			
+			/*opacity: 0.8;*/
+			}
+	</style>
+</head>
+<body >
  <div id="home-main" >
     <h3>Where do you want to go?</h3>
-    <button id="howItWorks" type="button">How It Works</button>
+    <md-button id="howItWorks" type="button" style="color: white">How It Works</md-button>
     <form ng-controller="HomeController">
 	    <div align="center" id="div-searchboxes">
 	      <input type="text" value="Pickup Point" ng-model='pickupPoint'></input>
 	      <input type="text" value="Dropoff Point" ng-model='dropoffPoint'></input>  
 	      <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
-	      <md-button ng-click= "searchTrip({'pickup_point':pickupPoint, 'dropoff_point': dropoffPoint, 'depart_date': myDate})" style="margin-right:20px;">Search</md-button>
+	      <md-button style="color: white" ng-click= "searchTrip({'pickup_point':pickupPoint, 'dropoff_point': dropoffPoint, 'depart_date': myDate})" style="margin-right:20px;" >Search</md-button>
 	    </div>
 	</form>
  </div>
