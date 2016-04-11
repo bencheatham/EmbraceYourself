@@ -95,15 +95,15 @@ angular.module('ridehook.tripview', [])
         console.log('lets reload now')
         ViewTrip.runReload(console.log('inhere!!!'));
         console.log('did it work?')
-       })
-     //    .catch(function(error) {
-     //     console.log(error);
-     //    })
-     //     .then(function() {
-     //      ViewTrip.getReviews(userID)
-     //       .then(function(data) {
-     //        $scope.reviews = data;
-     //       })
+       }).then(function() {
+         ViewTrip.getReviews(userID)
+         .then(function(data) {
+            $scope.reviews = data;
+            console.log(userID + ' reviews are: '+ $scope.reviews)
+            console.log($scope.reviews)
+         })
+
+       });
      //       .catch(function(error) {
      //        console.log(error);
      //       })
@@ -249,7 +249,7 @@ angular.module('ridehook.tripview', [])
   var getReviews = function(userID) {
     return $http({
       method: 'GET',
-      url: '/apil/user/user_reviews',
+      url: '/api/reviews/getUserReviews',
       data: userID
     })
     .then(function(resp) {
