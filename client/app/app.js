@@ -136,6 +136,7 @@ angular.module('ridehook', [
     delete $window.sessionStorage.un;
     delete $window.sessionStorage.fn;
     delete $window.sessionStorage.ln;
+    delete $window.sessionStorage.pp;
     $window.location.reload();
   };
 
@@ -222,6 +223,7 @@ angular.module('ridehook', [
             $window.sessionStorage.un = response.data.username;
             $window.sessionStorage.fn = response.data.first_name;
             $window.sessionStorage.ln = response.data.last_name;
+            $window.sessionStorage.pp = response.data.profile_pic;
 
             console.log('Success: ', response);
             $mdDialog.hide(information);
@@ -233,6 +235,7 @@ angular.module('ridehook', [
             delete $window.sessionStorage.un;
             delete $window.sessionStorage.fn;
             delete $window.sessionStorage.ln;
+            delete $window.sessionStorage.pp;
             console.log('Error: ', error);
         });
 
