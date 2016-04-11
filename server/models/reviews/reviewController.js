@@ -99,7 +99,7 @@ module.exports = {
         return res.status(500).json({success: false, data: err});
       }
 
-      var query =  client.query("SELECT users.id, users.username, riders.trip_id FROM users LEFT JOIN riders on users.id = riders.user_id LEFT JOIN reviews on users.id = reviews.reviewing_userid WHERE riders.trip_end_date is not null AND reviews.review is null;", function(err, result){
+      var query =  client.query("SELECT users.id, users.username, riders.trip_id FROM users LEFT JOIN riders on users.id = riders.user_id LEFT JOIN reviews on users.id = reviews.reviewing_userid WHERE CAST(riders.trip_end_date AS date) < current_date AND riders.trip_end_date is not null AND reviews.review is null;", function(err, result){
          console.log(result);
           if(err) {
             throw err;
