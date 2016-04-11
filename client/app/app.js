@@ -131,12 +131,13 @@ angular.module('ridehook', [
   $scope.loggedIn = $window.sessionStorage.un;
 
   $scope.logOut = function () {
-    delete $window.sessionStorage.token;
-    delete $window.sessionStorage.id;
-    delete $window.sessionStorage.un;
-    delete $window.sessionStorage.fn;
-    delete $window.sessionStorage.ln;
-    delete $window.sessionStorage.pp;
+    // delete $window.sessionStorage.token;
+    // delete $window.sessionStorage.id;
+    // delete $window.sessionStorage.un;
+    // delete $window.sessionStorage.fn;
+    // delete $window.sessionStorage.ln;
+    // delete $window.sessionStorage.pp;
+    $window.sessionStorage.clear();
     $window.location.reload();
   };
 
@@ -230,12 +231,13 @@ angular.module('ridehook', [
             $window.location.reload();
 
         }, function(error) {
-            delete $window.sessionStorage.token;
-            delete $window.sessionStorage.id;
-            delete $window.sessionStorage.un;
-            delete $window.sessionStorage.fn;
-            delete $window.sessionStorage.ln;
-            delete $window.sessionStorage.pp;
+            // delete $window.sessionStorage.token;
+            // delete $window.sessionStorage.id;
+            // delete $window.sessionStorage.un;
+            // delete $window.sessionStorage.fn;
+            // delete $window.sessionStorage.ln;
+            // delete $window.sessionStorage.pp;
+            $window.sessionStorage.clear();
             console.log('Error: ', error);
         });
 

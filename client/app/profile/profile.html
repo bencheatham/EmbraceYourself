@@ -26,7 +26,7 @@
 	</div >
 	<div id="rightcolumn">
 		<h1>Hey, I'm {{firstname}}<span ng-show="!loggedIn" style="color: red;">not logged in!</span></h1>
-		<p>{{city}}, {{state}}<p>
+		<p ng-show="loggedIn">{{city}}, {{state}}<p>
 		<p>4.8 Stars</p>
 		<br></br>
 		<!-- <p id="bioparagraph">{{biography}}</p> -->
