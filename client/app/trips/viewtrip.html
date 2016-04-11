@@ -76,7 +76,25 @@
 
   <div id="container" class="driver-side-bar">
 
+    <div id="driver-intro">
+      <p class="driver-title"><h2>Driver</h2></p>
 
+      <img class="thumb  user-thumb" ng-src="{{user.profile_pic}}" alt="{{user.name}}">
+      <h3>{{user.username}}</h3>
+      <p></p>
+      <p></p>
+    </div>
+ 
+
+    <div id="user-review-list">
+      <p>Reviews:</p>
+      <ul class="reviews">
+        <li ng-repeat="review in reviews" class="review-driver-side-bar">
+        <p class="review-stars">Stars: {{review.review_stars}}</p>
+        <p class="review-description">{{review.review}}</p>
+        </li>
+      <ul>
+    </div>
 
   </div>
 

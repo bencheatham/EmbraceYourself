@@ -25,8 +25,8 @@ angular.module('ridehook.reviews', [])
     console.log('here!!!!')
 
     var review = {
-     reviewed_userID: reviewed_user_id, //$scope.review.reviewed_userID,
-     reviewing_userID: reviewing_user_id, //$scope.review.reviewing_userID,
+     reviewed_user_id: reviewed_user_id, //$scope.review.reviewed_userID,
+     reviewing_user_id: reviewing_user_id, //$scope.review.reviewing_userID,
      review: $scope.review.review,
      review_stars: $scope.review.stars,
      review_trip_id: tripID,

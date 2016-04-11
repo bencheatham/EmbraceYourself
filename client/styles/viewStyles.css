@@ -45,8 +45,40 @@
 }
 
 .main-trip-block {
+
   padding-top: 15px;
 
+}
+
+.driver-side-bar {
+  position: relative;
+  display: inline-block;
+  clear: both;
+  height: 500px;
+  padding-top: 15px;
+  margin-left: 5px;
+  width: 20%;
+  background-color: #B2C2D0;
+  border:2px solid black;
+
+  border-radius: 6px;
+
+}
+
+#driver-intro {
+  position: relative;
+  display: inline-block;
+  float: left;
+  width: 90%;
+
+
+}
+
+#user-review-list {
+  position: relative;
+  display: inline-block;
+  float: left;
+  width: 90%;
 }
 
 .label {
@@ -72,6 +104,14 @@ li .detail {
 
 }
 
+li.review-driver-side-bar {
+  width: 95%;
+  background-color: #B2C2D0;
+  border:1px solid black;
+  padding: 5px;
+
+  border-radius: 2px; 
+}
 
 
 .thumb {
