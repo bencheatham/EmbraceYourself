@@ -5,6 +5,7 @@ angular.module('ridehook.tripview', [])
 
    $scope.trip = {};
    $scope.user = {};
+   $scope.reviews = {};
 
 
   //define global variables for trip view controller
@@ -15,7 +16,7 @@ angular.module('ridehook.tripview', [])
   var tripID = $window.sessionStorage.tripID; //tripIDFactory.tripID;
 
 
-  var tripUserID = null;
+  var driver_user_id = null;
   var riders = []; //array to hold current trip riders
   var num_seats = 0;
   var alreadyReloaded = false;
@@ -75,7 +76,7 @@ angular.module('ridehook.tripview', [])
        console.log('what trip query got')
        console.log(resp.data[0])
 
-       tripUserID = resp.data[0].user_id;
+       driver_user_id = resp.data[0].user_id;
 
        $scope.trip = resp.data[0];
        $scope.trip.window = "Within 1 hour";
@@ -89,21 +90,24 @@ angular.module('ridehook.tripview', [])
        $scope.changeRiderSeatStatus();
 
      }).then(function() {    
-       ViewTrip.getUser(tripUserID).then(function(resp) {
+       ViewTrip.getUser(driver_user_id).then(function(resp) {
          $scope.user = resp.data[0];
        }).then(function() {
         console.log('lets reload now')
         ViewTrip.runReload(console.log('inhere!!!'));
         console.log('did it work?')
-       })
-     //    .catch(function(error) {
-     //     console.log(error);
-     //    })
-     //     .then(function() {
-     //      ViewTrip.getReviews(userID)
-     //       .then(function(data) {
-     //        $scope.reviews = data;
-     //       })
+       }).then(function() {
+         ViewTrip.getReviews(driver_user_id)
+         .then(function(data) {
+            $scope.reviews = data.data;
+            $scope.reviews.review_count = data.data.length;
+            $scope.reviews.review_avg = $scope.calcAvgReviewStars(data.data);
+
+            console.log(driver_user_id + ' reviews are: '+ $scope.reviews)
+            console.log($scope.reviews)
+         })
+
+       });
      //       .catch(function(error) {
      //        console.log(error);
      //       })
@@ -125,7 +129,13 @@ angular.module('ridehook.tripview', [])
   };
 
 
-
+  $scope.calcAvgReviewStars = function(reviews) {
+    var starSum = reviews.reduce(function(accum, review) {
+      return accum + review.review_stars;
+    }, 0);
+    console.log('starSum: ' + starSum);
+    return starSum / reviews.length;
+  }
 
 
   $scope.takeSeat = function() {
@@ -247,10 +257,14 @@ angular.module('ridehook.tripview', [])
   };
 
   var getReviews = function(userID) {
+
+    var data = {};
+    data.reviewed_userid = userID;
+    
     return $http({
-      method: 'GET',
-      url: '/apil/user/user_reviews',
-      data: userID
+      method: 'POST',
+      url: '/api/reviews/get_user_reviews',
+      data: data
     })
     .then(function(resp) {
       return resp;
