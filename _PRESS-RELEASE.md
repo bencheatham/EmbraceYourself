@@ -18,16 +18,19 @@ Once the project moves into development, the press release can be used as a touc
 
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
-  
+  Ridehook
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  Ridehook connects drivers who have empty seats with people who need a ride.
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  Ridehook is a ridesharing application that connects people who need to travel. Whether it's a cross-country trip or a local commute, Ridehook let's you share the ride with friendly people who are traveling a similar route.
 
 ## Problem ##
   > Describe the problem your product solves.
+  Uber is expensive, Ridehook makes it possible for people to who need to travel to share
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.

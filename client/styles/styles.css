@@ -51,9 +51,6 @@ body {
 	top: 13%;
 	left: 50%;
 	transform: translate(-50%, 0%);
-	color: white;
-	font-size: 35pt;
-
 }
 
 #howItWorks{
@@ -61,7 +58,6 @@ body {
 	top: 35.0%;
 	left: 50%;
 	transform: translate(-50%, 0%);
-
 }
 
 #div-searchboxes{
@@ -69,9 +65,7 @@ body {
 	top: 55.5%;
 	left: 50%;
 	transform: translate(-50%, 0%);
-
 }
-
 
 /*Profile Page Styles */
 #verifiedcolumnleft{
@@ -106,13 +100,26 @@ body {
 	overflow: auto;
 }
 
-
 /* create a trip view styles */
 
+#create-trip-title {
+	font-family: 'Noto Serif', serif;
+	font-size: 2em;
+}
+
+#div-trip {
+	background-color: #9fbddf;
+	border: 1px solid black;
+}
+
 #tripForm {
+	font-family: 'Noto Serif', serif;
+	font-size: 1.2em;
 	width: 600px;
 	margin: 0 auto;
-	border: 1px solid black;
+	//border: 1px solid black;
+	border-radius: 10px;
+	padding-bottom: 10px;
 }
 
 #textarea-description {
@@ -120,8 +127,37 @@ body {
 	height: 50px;
 }
 
+#div-location {
+	padding-bottom: 30px;
+}
+
 #input-pickup-location {
 	width: 200px;
+	text-align: center;
+}
+
+#div-datetime {
+	margin-left: 40px;
+	float: left;
+}
+
+#div-seats {
+	display: block;
+}
+
+#input-numSeats {
+	width: 30px;
+	height: 25px;
+	//display: block;
+	text-align: center;
+}
+
+#btn-submit-trip {
+	//display: block;
+	color: #ffffff;
+	border-radius: 5px;
+	background-color: #dd4b39;
+	margin-top: 10px;
 }
 
 #err_msg {
