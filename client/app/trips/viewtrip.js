@@ -356,4 +356,49 @@ angular.module('ridehook.tripview', [])
     deleteRider: deleteRider
   }
 
+})
+
+.factory('Messages', function($http) {
+
+
+      // message_text VARCHAR(500), \
+      // creator_id INT, \
+      // creator_display_name VARCHAR(255), \
+      // responds_to INT, \
+      // message_trip_id INT, \
+      // responses VARCHAR, \
+      // modified_on VARCHAR(255)
+
+
+  var addMessages = function(tripID) {
+    return $http({
+      method: 'POST',
+      url: '/api/trips/get_trip_messages',
+      data: tripID
+    })
+  }
+
+  var getMessages = function(tripID) {
+
+    var data = {};
+    data.tripID = tripID;
+
+    return $http({
+      method: 'POST',
+      url: '/api/messages/get_trip_messages',
+      data: data
+    })
+  }
+
+
+  return {
+    addMessage: addMessage,
+    getMessage: getMessage
+  }
+
 });
+
+
+
+
+

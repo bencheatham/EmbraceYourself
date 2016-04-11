@@ -82,14 +82,21 @@
 }
 
 .label {
+ display: inline-block;
+ width: 15%;
+ text-align: left;
  float: left;
  padding-left: 20px;
+ padding-right: 5px;
  text-decoration: bold;
 }
 
 .detail {
+display: inline-block;
+ width: 40%;
  float: none;
- padding-right: 20px;
+ text-align: left;
+ padding-right: 5px;
 
 }
 

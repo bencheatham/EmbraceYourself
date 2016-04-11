@@ -74,6 +74,11 @@
 
   </div>
 
+  
+
+
+
+
   <div id="container" class="driver-side-bar">
 
     <div id="driver-intro">
@@ -100,6 +105,35 @@
 
   </div>
 
+
+
+  <div id="container" class="messages-box">
+
+
+    <form class="add-message" name="addMessageform" role="form" ng-submit='addMessage()'>
+
+
+      <p></p>
+      <p></p>
+
+
+      <div class="form-group form-group-lg">
+        <label class="col-sm-2 control-label" for="lg">Message: </label>
+        <div class="col-sm-10">
+          <textarea id="inputlg" class="form-control input-lg" id="lg" type='text' ng-model='new_message.message' placeholder="Ask a question." required></textarea>
+        </div>
+      </div>
+
+      <div>
+        <p></p>
+          <input type="submit" value="Submit Message">
+        <p></p>
+      </div>
+
+
+
+    </form>
+  </div>
 
 
 
