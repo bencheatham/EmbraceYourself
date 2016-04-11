@@ -178,7 +178,7 @@ angular.module('ridehook', [
               last_name: information.last_name,
               email: information.email,
               birth_date: information.birth_date,
-              profile_pic: null,
+              profile_pic: information.profile_pic,
               city: information.city,
               state: information.state,
               zip_code: Number(information.zip)
