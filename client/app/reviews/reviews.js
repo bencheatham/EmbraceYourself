@@ -22,9 +22,6 @@ angular.module('ridehook.reviews', [])
 
   $scope.addReview = function() {
 
-
-    console.log('here!!!!')
-
     var review = {
      reviewed_user_id: reviewed_user_id, //$scope.review.reviewed_userID,
      reviewing_user_id: reviewing_user_id, //$scope.review.reviewing_userID,
@@ -33,12 +30,6 @@ angular.module('ridehook.reviews', [])
      review_trip_id: tripID,
      created_on: Date.now()
     }
-
-    console.log('review: ')
-    console.log(review)
-
-
-
 
     $scope.loading = true;
     Reviews.addReview(review)
@@ -81,6 +72,10 @@ angular.module('ridehook.reviews', [])
       url: 'api/reviews/addReview',
       data: review
     })
+  }
+
+  var getMissingReviews = function(userID) {
+    
   }
 
 
