@@ -80,7 +80,7 @@ angular.module('ridehook.tripview', [])
        driver_user_id = resp.data[0].user_id;
 
        $scope.trip = resp.data[0];
-       $scope.trip.window = "Within 1 hour";
+       $scope.trip.window = "1 hour";
        $scope.trip.cargo = "1 suitcase";
        $scope.trip.seat_price = 35;
        $scope.user.profile_pic = "../../assets/profile_pics/126717412.jpg";

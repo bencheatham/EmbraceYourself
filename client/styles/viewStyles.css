@@ -1,16 +1,26 @@
 
 .trip-head {
   font-size: 30px;
-
+  padding-bottom: 20px;
 
 }
 
 .trip-view {
+  font-family: 'Noto Serif', serif;
   position: relative;
   height: 100%;
   width: 100%;
 
 
+}
+
+.div-trip-route {
+  display: inline-block;
+}
+
+.arrow {
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 
@@ -21,12 +31,14 @@
   clear: both;
   height: 500px;
   padding-top: 15px;
-  margin-left: 5px;
+  margin-left: 40px;
   width: 70%;
-  background-color: #B2C2D0;
-  border:2px solid black;
-
+  background-color: #ecf2f9;
+  //border:2px solid black;
   border-radius: 6px;
+
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),
+              0 6px 20px 0 rgba(0,0,0,0.19) !important;
 }
 
 
@@ -34,18 +46,21 @@
   position: relative;
   display: inline-block;
   clear: both;
-  height: 270px;
+  height: 210px;
   padding-top: 15px;
   margin-left: 5px;
+  margin-bottom: 15px;
   width: 20%;
-  background-color: #B2C2D0;
-  border:2px solid black;
-
+  background-color: #ecf2f9;
+  //border:2px solid black;
   border-radius: 6px;
+
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),
+              0 6px 20px 0 rgba(0,0,0,0.19) !important;
 }
 
 .main-trip-block {
-
+  font-size: 1.5em;
   padding-top: 15px;
 
 }
@@ -59,10 +74,12 @@
   margin-top: 15px;
   margin-left: 5px;
   width: 20%;
-  background-color: #B2C2D0;
-  border:2px solid black;
-
+  background-color: #ecf2f9;
+  //border:2px solid black;
   border-radius: 6px;
+
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),
+              0 6px 20px 0 rgba(0,0,0,0.19) !important;
 
 }
 
@@ -118,10 +135,14 @@
  display: inline-block;
  width: 15%;
  text-align: left;
+ color: black !important;
  float: left;
  padding-left: 20px;
  padding-right: 5px;
  text-decoration: bold;
+ text-decoration: underline;
+ width: 200px;
+ text-align: left;
 }
 
 .detail {
@@ -129,8 +150,6 @@ display: inline-block;
  width: 40%;
  float: none;
  text-align: left;
- padding-right: 5px;
-
 }
 
 
@@ -176,6 +195,9 @@ li.review-driver-side-bar {
  height: 110px; 
  border:2px solid #7293A0;
  border-radius: 6px;
+ margin-left: 40px;
+ margin-top: 20px;
+ background-color: #f2f2f2;
 }
 
 
