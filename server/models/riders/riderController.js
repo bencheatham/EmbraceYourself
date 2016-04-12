@@ -115,6 +115,81 @@ module.exports = {
       });
     });
 
+  },
+
+  getMissingTripReviews: function(req, res, next) {
+
+    var client = helper.createClient();
+
+    var tripID = req.body.trip_id;
+    var userID = req.body.user_id;
+    console.log('HERE ins get getMissingTripReviews')
+    console.log(tripID)
+    console.log(userID)
+
+    client.connect(function(err) {
+      if(err) {
+        console.error('post failed!');
+        return res.status(500).json({ success: false, data: err});
+      }
+
+
+
+      var query = client.query("SELECT * FROM riders WHERE review_id \
+         is null AND user_id != $1 AND trip_id = $2",
+       [userID, tripID]);
+
+      var foundRiders = [];
+
+      query.on('row', function(row) {
+        console.log(row)
+        foundRiders.push(row);
+      });
+
+      query.on('end', function() {
+        client.end();
+        return res.send(foundRiders);
+      });
+
+    });
+
+  },
+
+  getUserTrips: function(req, res, next) {
+
+    var client = helper.createClient();
+
+    var userID = req.body.user_id;
+    console.log('HERE ins get getMissingReviews')
+    console.log(userID)
+
+    client.connect(function(err) {
+      if(err) {
+        console.error('post failed!');
+        return res.status(500).json({ success: false, data: err});
+      }
+
+
+      var query = client.query("SELECT * FROM riders WHERE \
+        CAST(riders.trip_end_date AS date) < current_date AND\
+         trip_end_date is not null AND review_id \
+         is null AND user_id =$1",
+       [userID]);
+
+      var foundTrips = [];
+
+      query.on('row', function(row) {
+        console.log(row)
+        foundTrips.push(row);
+      });
+
+      query.on('end', function() {
+        client.end();
+        return res.send(foundTrips);
+      });
+
+    });
+
   }
 
 }

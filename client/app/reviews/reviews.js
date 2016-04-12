@@ -43,6 +43,64 @@ angular.module('ridehook.reviews', [])
 
   };
 
+
+  var userObj = {};
+  $scope.results = [];
+
+  $scope.getMissingReviews = function() {
+
+    Reviews.getUserTrips(reviewing_user_id)
+    .then(function(resp) {
+      console.log(resp.data)
+
+      resp.data.forEach(function(seat_taken) {
+        console.log(seat_taken.trip_id)
+        Reviews.getMissingTripReviews(seat_taken.trip_id, reviewing_user_id)
+        .then(function(resp) {
+          resp.data.forEach(function(user) {
+            Reviews.getUserInfo(user.user_id).then(function(resp) {
+
+                  userObj.first_name = resp.data[0].first_name;
+                  userObj.last_name = resp.data[0].last_name;
+                  userObj.user_id = resp.data[0].id;
+                  userObj.profile_pic = resp.data[0].profile_pic;
+
+              //console.log(resp.data)
+
+
+              Reviews.getTripInfo(user.trip_id).then(function(resp) {
+
+                userObj.start_point = resp.data[0].pickup_point;
+                userObj.destination = resp.data[0].dropoff_point;
+                userObj.arrival_date = resp.data[0].arrival_date;
+                userObj.arrival_time = resp.data[0].arrival_time;
+                userObj.trip_id = resp.data[0].id;
+
+                //console.log(resp.data)
+
+                console.log(userObj)
+
+                $scope.results.push(userObj);
+
+              }).then(function() {
+
+              })
+            })
+          })
+
+          //console.log(resp.data)
+
+        })
+      })
+
+
+
+
+    })
+  }
+          console.log($scope.results)
+
+  $scope.getMissingReviews();
 //function to check to see if needs_review_user_id exists.
 //if it exists, redirect to addreview.html
 
@@ -58,6 +116,7 @@ angular.module('ridehook.reviews', [])
   }
 
   var getUserReviews = function(userID) {
+
    return $http({
      method: 'GET',
      url: 'api/reviews/getUserReviews',
@@ -74,15 +133,62 @@ angular.module('ridehook.reviews', [])
     })
   }
 
-  var getMissingReviews = function(userID) {
-    
+  var getMissingTripReviews = function(tripID, userID) {
+    var data = {};
+    data.trip_id = tripID;
+    data.user_id = userID;
+
+    console.log('here ins getMissingReviews')
+    return $http({
+      method: 'POST',
+      url: 'api/rider/get_missing_trip_reviews',
+      data: data
+    })
+  }
+
+  var getUserTrips = function(userID) {
+    var data = {};
+    data.user_id = userID;
+
+    console.log('here ins getUserTrips')
+    return $http({
+      method: 'POST',
+      url: 'api/rider/get_user_trips',
+      data: data
+    })
+  }
+
+  var getUserInfo = function(userID) {
+    var data = {};
+    data.userID = userID;
+
+    return $http({
+      method: 'POST',
+      url: '/data/users/getProfileInfo',
+      data: data
+    })
+  }
+
+  var getTripInfo = function(tripID) {
+    var data = {};
+    data.tripID = tripID;
+
+    return $http({
+      method: 'POST',
+      url: 'api/trips/view_trip',
+      data: data
+    })
   }
 
 
   return {
     getCount: getCount,
     getUserReviews: getUserReviews,
-    addReview: addReview
+    addReview: addReview,
+    getMissingTripReviews: getMissingTripReviews,
+    getTripInfo: getTripInfo,
+    getUserInfo: getUserInfo,
+    getUserTrips: getUserTrips
   }
 
 
